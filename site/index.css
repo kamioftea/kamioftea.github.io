@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+body {
+  grid-gap: 10px;
+  --grid-gap: 10px;
+  grid-template-columns: 1fr min(40vw - var(--grid-gap), 24rem) min(60vw - var(--grid-gap), 36rem) 1fr;
+  grid-template-rows: 40vh;
+  place-items: center;
+}
+@media print, screen and (min-width: 45em) {
+  body {
+    grid-gap: 15px;
+    --grid-gap: 15px;
+  }
+}
+
+.cover-image {
+  background: url(https://static.goblinoid.co.uk/jeff-horton.uk/home-cover.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  width: 100vw;
+  height: 40vh;
+  grid-area: 1/1/2/5;
+}
+
+.profile {
+  margin-top: calc(40vh - min(15vw, 9rem));
+  grid-area: 1/2/3/3;
+  text-align: center;
+}
+.profile .avatar {
+  width: min(30vw, 18rem);
+  height: min(30vw, 18rem);
+  border-radius: min(15vw, 9rem);
+}
+
+@media print, screen and (max-width: 44.99875em) {
+  body {
+    grid-template-columns: 1fr min(100vw - var(--grid-gap), 36rem) 1fr;
+    grid-template-rows: 20vh;
+  }
+
+  .cover-image {
+    background: url(https://static.goblinoid.co.uk/jeff-horton.uk/home-cover.jpg) no-repeat 50% 50%;
+    background-size: cover;
+    height: 20vh;
+    grid-area: 1/1/2/4;
+  }
+
+  .profile {
+    max-width: 24rem;
+    margin-top: calc(20vh - min(36vw, 9rem));
+  }
+  .profile .avatar {
+    width: min(72vw, 18rem);
+    height: min(72vw, 18rem);
+    border-radius: min(36vw, 9rem);
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
