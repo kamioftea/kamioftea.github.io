@@ -1,7 +1,8 @@
+@import 'util/util';
 .cv-header {
   grid-template-columns: 1fr max-content 12rem;
   grid-gap: 1rem;
-  align-items: center;
+  place-items: center;
 
   display: grid;
   justify-content: space-between;
@@ -10,6 +11,14 @@
     width: 12rem;
     height: 12rem;
     border-radius: 6rem;
+  }
+
+  @include breakpoint(small down) {
+    grid-template-columns: auto;
+
+    .avatar {
+      order: -1;
+    }
   }
 }
 

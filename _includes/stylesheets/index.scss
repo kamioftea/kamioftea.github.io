@@ -2,9 +2,9 @@
 @import "util";
 
 body {
-  @include grid-gap();
+  grid-gap: 1rem;
 
-  grid-template-columns: 1fr min(calc(40vw - var(--grid-gap)), 24rem) min(calc(60vw - var(--grid-gap)), 36rem) 1fr;
+  grid-template-columns: 1fr min(calc(40vw - 2rem), 24rem) min(calc(60vw - 2rem), 36rem) 1fr;
   grid-template-rows: 40vh;
 
   place-items: center;
@@ -20,7 +20,7 @@ body {
 }
 
 .profile {
-  margin-top: calc(40vh - min(15vw, 9rem));
+  margin-top: calc(40vh - min(15vw, 9rem) - 1rem /*grid gap*/);
   grid-area: 1 / 2 / 3 / 3;
   text-align: center;
 
@@ -31,9 +31,10 @@ body {
   }
 }
 
-@include breakpoint(small down) {
+@include breakpoint(53rem down) {
   body {
-    grid-template-columns: 1fr min(calc(100vw - var(--grid-gap)), 36rem) 1fr;
+    grid-gap: 0;
+    grid-template-columns: 1fr min(calc(100vw), 36rem) 1fr;
     grid-template-rows: 20vh;
   }
 
