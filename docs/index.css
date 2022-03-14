@@ -1,17 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 body {
-  grid-gap: 10px;
-  --grid-gap: 10px;
-  grid-template-columns: 1fr min(40vw - var(--grid-gap), 24rem) min(60vw - var(--grid-gap), 36rem) 1fr;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr min(40vw - 2rem, 24rem) min(60vw - 2rem, 36rem) 1fr;
   grid-template-rows: 40vh;
   place-items: center;
-}
-@media print, screen and (min-width: 45em) {
-  body {
-    grid-gap: 15px;
-    --grid-gap: 15px;
-  }
 }
 
 .cover-image {
@@ -23,7 +16,7 @@ body {
 }
 
 .profile {
-  margin-top: calc(40vh - min(15vw, 9rem));
+  margin-top: calc(40vh - min(15vw, 9rem) - 1rem);
   grid-area: 1/2/3/3;
   text-align: center;
 }
@@ -33,9 +26,10 @@ body {
   border-radius: min(15vw, 9rem);
 }
 
-@media print, screen and (max-width: 44.99875em) {
+@media screen and (max-width: 53em) {
   body {
-    grid-template-columns: 1fr min(100vw - var(--grid-gap), 36rem) 1fr;
+    grid-gap: 0;
+    grid-template-columns: 1fr min(100vw, 36rem) 1fr;
     grid-template-rows: 20vh;
   }
 
