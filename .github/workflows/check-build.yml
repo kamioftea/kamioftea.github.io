@@ -1,0 +1,15 @@
+name: Confirm the site builds without error
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Site
+      run: |
+        npm install
+        npm run build

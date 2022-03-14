@@ -1,0 +1,167 @@
+---
+css: cv
+breadcrumbs:
+  - label: Home
+    url: "/"
+  - label: Curriculum Vitae
+---
+<div class="cv-header">
+	<div>
+		<h1>Jeff Horton</h1>
+		<p class="lead text-secondary">
+			Web developer, LARPer, board gamer, geek with a love of mountains
+		</p>
+	</div>
+	<div>
+		{% include './_includes/contact-details.njk' %}
+	</div>
+	<img src="https://static.goblinoid.co.uk/jeff-horton.uk/profile.jpg" alt="Profile Picture"
+	     title="A photo headshot of Jeff Horton with the asexual pride flag in the background"
+	     class="avatar"/>
+</div>
+
+<h2>About Me</h2>
+<p>
+	I’m a full-stack web developer with a decade of professional experience. I have worked with
+	multiple languages and frameworks, including Javascript with React, PHP with Laminas, Java with
+	Spring Boot. I have been involved in the full software delivery lifecycle: Researching
+	requirements and producing prototypes for user feedback, developing and testing applications;
+	then deploying, monitoring, and supporting them in production.
+</p>
+<p>
+	Outside of work I play a lot of tabletop games, and take part in Live Action Roleplay. As part
+	of these have written a number of small personal projects including character management
+	systems, and mock futuristic computer interfaces for Sci-Fi games. I use these to experiment
+	with other technologies that I can then introduce to my professional work where appropriate.
+	Recently these have included Rust,, Scala with Play Framework, MongoDB, and containerisation
+	with Docker.
+</p>
+
+<h2>Professional Experience</h2>
+<h3>
+	Software Developer <i class="text-secondary">- UK Home Office, Sheffield</i><br>
+	<small>July 2021 - Present</small>
+</h3>
+<p>
+	Working as part of an agile team to transfer building an application in-house from external
+	contractors. There were two months of knowledge transfer, and we have since developed
+	missing functionality and successfully released an MVP.
+</p>
+<ul>
+	<li>
+		A frontend built with the Next.js React framework, communicating with a Java backend built
+		with the Spring Boot framework.
+	</li>
+	<li>
+		Jest, React Testing Library, and JUnit are used for unit testing, plus Cucumber and Selenium
+		for End-to-End testing.
+	</li>
+	<li>Using the ELK stack, and Grafana for logging and monitoring.</li>
+	<li>Integration with AWS services, and a third-party case-working system.</li>
+	<li>
+		A Jenkins based CI/CD pipeline to automate testing, building, and deploying the
+		application.
+	</li>
+</ul>
+<p>
+	I am also an active member of the developer community at the Home Office. I’m a member of
+	the
+	ways of working guild, a group of engineers who research and publish standards and guidance
+	for developers at the Home Office. I’ve been involved in assessing applications, technical
+	tests, and interview panels as part of the Home Office recruitment process.
+</p>
+
+<h3>
+	Senior Developer <i class="text-secondary">- High Tech Click, Sheffield</i><br>
+	<small>January 2012 - July 2021</small>
+</h3>
+<p>
+	Working as part of a small team using agile methodologies, I developed, maintained and worked
+	with a number of systems for HTC’s main client. This client sells a wide range of products on
+	ecommerce websites and third-party marketplaces. We had a close working relationship with our
+	users to ensure that these applications meet their needs.
+</p>
+<ul>
+	<li>
+		A product, stock, and order management system. Written in PHP 7.4, using Laminas MVC
+		Framework, with React, JQuery, and Less in the frontend, and using MySQL and Postgres
+		databases, and Apache Kafka for streaming data.
+	</li>
+	<li>
+		Integrations with third-party APIs, including eBay, Amazon MWS, and a bespoke ecommerce
+		platform.
+	</li>
+	<li>
+		A goods in and order dispatch system. Written in Java using Apache Pivot. This communicates
+		with the management system over a JSON based REST API.
+	</li>
+	<li>
+		A library for background processing in PHP. This included inter-process communication
+		managed by a RabbitMQ server. On top of that I built task scheduling, and invariant
+		monitoring libraries, and a system that used websockets for browser push notifications.
+	</li>
+</ul>
+
+<h3>
+	Second Line Support Engineer <i class="text-secondary">- Legend Club Management, York</i><br>
+	<small>MARCH 2009 - DECEMBER 2011</small>
+</h3>
+<ul>
+	<li>Support clients of a bespoke gym management software suite over phone and email.</li>
+	<li>Support a remote desktop platform using Citrix, Windows, and bundled Microsoft Apps.</li>
+	<li>Build custom Microsoft SQL Server scripts for reporting and bulk updates.</li>
+</ul>
+
+<h2>Education</h2>
+<h3>
+	York University <em class="text-secondary">- BSc Computer Science</em><br>
+	<small>OCTOBER 2002 - JUNE 2005</small>
+</h3>
+<ul>
+	<li>
+		Courses in database design, project management, concurrency and distributed systems, compilers,
+		game theory, and artificial intelligence.
+	</li>
+<li>Final year project on using genetic algorithms to develop stream classifiers.
+</li>
+	<li>Languages used include Java, Prolog, and Scheme.</li>
+	</ul>
+<h3>
+	Salt Grammar School, Bradford<br>
+	<small>SEPTEMBER 1997 - JULY 2002</small>
+</h3>
+<ul>
+<li>
+	<em>A level</em>: Maths(A), Further Maths(A), Chemistry(A) and Biology(A). Computing AS (A).
+</li>
+	<li>
+		<em>GCSE</em>: 9 A* to C including Maths(A*), Sciences(A*, A*, A) and English(A, B).
+	</li>
+</ul>
+<p>I am studying towards the AWS Certified Developer qualification.</p>
+<p>I have a full, clean UK driving licence.</p>
+
+<h2>Other Information</h2>
+<ul>
+<li>
+	To celebrate turning thirty I climbed ninety peaks in a year. I recorded the challenge at
+	<a href="https://www.peak-challenge.co.uk">www.peak-challenge.co.uk</a>. Many of the updates were
+	posted from my phone as I hiked.
+</li>
+<li>
+	For my attempt at the 2021 Advent of Code I used GitHub Actions and GitHub pages to
+automatically publish my solutions to <a href="https://kamioftea.github.io/advent-of-code-2021/">
+		https://kamioftea.github.io/advent-of-code-2021/</a>.
+</li>
+<li>
+	For a Sci-Fi game I wrote a mock dashboard and communications system. This included a hacking
+game backed by Akka actors simulating fake server and account activity.
+</li>
+<li>I have helped organise successful weekend live action role-play events for fifty people,
+including involvement in the planning, administration, logistics, and promotion required for
+these.
+</li>
+<li>I have a varied collection of board games and table-top RPGs, and organise gaming evenings with
+	colleagues after work.</li>
+</ul>
+<p class="h2" style="font-variant: small-caps">References can be provided on request</p>

@@ -1,0 +1,59 @@
+@import 'util/util';
+@import "util";
+
+body {
+  @include grid-gap();
+
+  grid-template-columns: 1fr min(calc(40vw - var(--grid-gap)), 24rem) min(calc(60vw - var(--grid-gap)), 36rem) 1fr;
+  grid-template-rows: 40vh;
+
+  place-items: center;
+}
+.cover-image {
+  background: url(https://static.goblinoid.co.uk/jeff-horton.uk/home-cover.jpg) no-repeat 50% 50%;
+  background-size: cover;
+
+  width: 100vw;
+  height: 40vh;
+
+  grid-area: 1 / 1 / 2 / 5;
+}
+
+.profile {
+  margin-top: calc(40vh - min(15vw, 9rem));
+  grid-area: 1 / 2 / 3 / 3;
+  text-align: center;
+
+  .avatar {
+    width: min(30vw, 18rem);
+    height: min(30vw, 18rem);
+    border-radius: min(15vw, 9rem);
+  }
+}
+
+@include breakpoint(small down) {
+  body {
+    grid-template-columns: 1fr min(calc(100vw - var(--grid-gap)), 36rem) 1fr;
+    grid-template-rows: 20vh;
+  }
+
+  .cover-image {
+    background: url(https://static.goblinoid.co.uk/jeff-horton.uk/home-cover.jpg) no-repeat 50% 50%;
+    background-size: cover;
+
+    height: 20vh;
+
+    grid-area: 1 / 1 / 2 / 4;
+  }
+
+  .profile {
+    max-width: 24rem;
+    margin-top: calc(20vh - min(36vw, 9rem));
+
+    .avatar {
+      width: min(72vw, 18rem);
+      height: min(72vw, 18rem);
+      border-radius: min(36vw, 9rem);
+    }
+  }
+}

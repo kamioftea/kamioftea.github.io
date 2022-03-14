@@ -1,0 +1,32 @@
+name: Build the static site and push it to GitHub pages branch
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+        ref: gh-pages
+    - name: Merge main
+      run: |
+        git config --local user.email "bot@goblinoid.co.uk"
+        git config --local user.name "Github Actions Bot"
+        git merge origin/main
+    - name: Build Site
+      run: |
+        npm install
+        npm run build
+    - name: Commit Docs
+      run: |
+        rm -rf site 
+        cp -rn _site/* site/
+        git add .
+        git commit -m"Commit site updates" -a || echo "No changes to commit"
+        git push

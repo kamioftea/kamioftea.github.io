@@ -1,0 +1,7 @@
+{% for detail in contactDetails %}
+	<p class="contact-detail">
+		{{ detail.icon | icon | safe}}
+		<span class="provider">{{ detail.provider }}:</span>
+		<a href="{{ detail.url }}">{{ detail.handle }}</a>
+	</p>
+{% endfor %}

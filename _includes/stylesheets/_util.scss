@@ -1,0 +1,11 @@
+@import 'util/util';
+@import 'settings';
+
+@mixin grid-gap() {
+  @each $size, $width in $grid-column-gutter {
+    @include breakpoint(#{$size} up) {
+      grid-gap: divide($width, 2);
+      --grid-gap: #{divide($width, 2)};
+    }
+  }
+}

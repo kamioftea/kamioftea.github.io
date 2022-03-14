@@ -1,12 +1,26 @@
 {
   "name": "kamioftea.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "Static site builder for my user github pages site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kamioftea/kamioftea.github.io"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm:watch:*\"",
+    "watch:11ty": "npx @11ty/eleventy --serve --port=8081",
+    "watch:scss": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site --watch",
+    "build": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site && npx @11ty/eleventy"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Jeff Horton <contact@jeff-horton.uk",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "concurrently": "^7.0.0",
+    "feather-icons": "^4.28.0",
+    "foundation-sites": "^6.7.4",
+    "sass": "^1.49.9"
+  }
 }

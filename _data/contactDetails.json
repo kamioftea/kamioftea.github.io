@@ -1,0 +1,20 @@
+[
+  {
+    "provider": "Twitter",
+    "handle": "@KamiOfTea",
+    "icon": "twitter",
+    "url": "https://twitter.com/KamiOfTea"
+  },
+  {
+    "provider": "GitHub",
+    "handle": "kamioftea",
+    "icon": "github",
+    "url": "https://github.com/kamioftea/"
+  },
+  {
+    "provider": "E-Mail",
+    "handle": "contact@jeff-horton.uk",
+    "icon": "mail",
+    "url": "mailto:contact@jeff-horton.uk"
+  }
+]

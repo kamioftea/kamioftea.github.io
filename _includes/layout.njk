@@ -1,0 +1,33 @@
+---
+layout: boilerplate.njk
+---
+{% if coverImage %}
+<header class="cover-image" style="background-image: url({{ coverImage }})">
+	{% if header %}
+		<div class="title-wrapper">
+			<h1>{{ header }}</h1>
+		</div>
+	{% endif %}
+</header>
+{% endif %}
+<main>
+	{% if breadcrumbs %}
+		<nav aria-label="You are here:" role="navigation">
+			<ul class="breadcrumbs">
+				{% for breadcrumb in breadcrumbs %}
+					{% if loop.last %}
+						<li><span class="show-for-sr">Current: </span> {{ breadcrumb.label }}</li>
+					{% elif breadcrumb.url %}
+						<li><a href="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a></li>
+					{% else %}
+						<li class="disabled">{{ breadcrumb.label }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</nav>
+	{% endif %}
+	{% if header and not coverImage %}
+		<h1>{{ header }}</h1>
+	{% endif %}
+	{{ content | safe }}
+</main>
