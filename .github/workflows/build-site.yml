@@ -25,7 +25,7 @@ jobs:
         npm run build
     - name: Commit Docs
       run: |
-        rm -rf site docs 
+        rm -rf docs 
         mv _site docs
         git add .
         git commit -m"Commit site updates" -a || echo "No changes to commit"
