@@ -86,7 +86,7 @@ $black-gray: #151515;
 $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $black-gray;
-$body-font-color: $white;
+$body-font-color: $light-gray;
 $body-font-family: 'Source Sans Pro', Helvetica, Roboto, Arial, sans-serif;
 $body-safe-padding: false;
 $body-antialiased: true;
@@ -802,7 +802,7 @@ $switch-cursor-disabled: not-allowed;
 // 50. Table
 // ---------
 
-$table-background: lighten($black-gray, 5%);
+$table-background: $black-gray;
 $table-color-scale: 5%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);

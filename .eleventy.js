@@ -1,3 +1,10 @@
+const { EleventyRenderPlugin } = require("@11ty/eleventy");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const feather = require('feather-icons');
+const dayjs = require('dayjs');
+const advancedFormat = require('dayjs/plugin/advancedFormat')
+dayjs.extend(advancedFormat)
+
 import {EleventyRenderPlugin} from '@11ty/eleventy';
 import {join} from "node:path"
 import {readFile} from "node:fs/promises"
@@ -56,6 +63,7 @@ class Comparator {
 // noinspection JSUnusedGlobalSymbols
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(EleventyRenderPlugin)
+    eleventyConfig.addPlugin(syntaxHighlight);
     eleventyConfig.addPlugin(inclusiveLangPlugin);
 
     eleventyConfig.ignores.add("README.md");
@@ -71,7 +79,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('assets')
     eleventyConfig.addPassthroughCopy('./favicon.png')
 
-    eleventyConfig.addNunjucksFilter('icon', (name) => {
+    eleventyConfig.addFilter('icon', (name) => {
         if (feather.icons[name]) {
             return feather.icons[name].toSvg();
         }
@@ -95,6 +103,10 @@ export default function (eleventyConfig) {
                 .thenComparing((unit) => unit.data.name)
                 .build()
         ))
+
+    eleventyConfig.addFilter('format', (date, format) => {
+        return dayjs(date).format(format)
+    })
 
     return {
         passthroughFileCopy:    true,
