@@ -68,11 +68,11 @@
 // 1. Global
 // ---------
 
-$global-font-size: 100%;
+$global-font-size: 125%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary:#658025,
+  primary:#a1c942,
   secondary: #767676,
   success: #92C663,
   warning: #FAC366,
@@ -82,10 +82,11 @@ $foundation-palette: (
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
+$black-gray: #151515;
 $black: #0a0a0a;
 $white: #fefefe;
-$body-background: $black;
-$body-font-color: $white;
+$body-background: $black-gray;
+$body-font-color: $light-gray;
 $body-font-family: 'Source Sans Pro', Helvetica, Roboto, Arial, sans-serif;
 $body-safe-padding: false;
 $body-antialiased: true;
@@ -801,7 +802,7 @@ $switch-cursor-disabled: not-allowed;
 // 50. Table
 // ---------
 
-$table-background: $white;
+$table-background: $black-gray;
 $table-color-scale: 5%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);

@@ -73,8 +73,33 @@ body {
 }
 
 main {
-  width: min(100%, 52em);
+  width: min(100%, 40em);
   padding: 1em;
+}
+
+.header-image {
+  aspect-ratio: 4 / 1;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+  display: grid;
+  margin-bottom: $global-margin;
+  width: 100vw;
+
+  justify-items: stretch;
+  align-items: end;
+
+  .title-wrapper {
+    background-color: rgba($black, 70%);
+    padding: $global-padding;
+    display: grid;
+  }
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    width: min(775px, 100%);
+    justify-self: center;
+  }
 }
 
 /// Styles for contact-details.njk snippet

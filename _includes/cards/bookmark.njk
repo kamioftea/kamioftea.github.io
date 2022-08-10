@@ -1,0 +1,16 @@
+<a href="{{ url }}">
+	<figure class="bookmark">
+		<figcaption class="text">
+			<h2>{{ title }}</h2>
+			{{ content | safe }}
+		</figcaption>
+		<div class="footer">
+			<img src="{{ icon }}" class="bookmark-icon" alt="{{ publisher }}">
+			<span class="bookmark-publisher">{{ publisher }}</span>
+			<span class="bookmark-author">{{ author }}</span>
+		</div>
+		<div class="bookmark-image">
+			<img src="{{ image_url }}" alt="{{ image_alt }}">
+		</div>
+	</figure>
+</a>

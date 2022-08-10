@@ -11,16 +11,24 @@
     "start": "concurrently \"npm:watch:*\"",
     "watch:11ty": "npx @11ty/eleventy --serve --port=8081",
     "watch:scss": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site --watch",
-    "build": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site && npx @11ty/eleventy"
+    "build": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site && npx @11ty/eleventy",
+    "ingest:ghost": "node ingest-ghost.js"
   },
   "keywords": [],
   "author": "Jeff Horton <contact@jeff-horton.uk",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
+    "@aws-sdk/client-s3": "^3.58.0",
     "concurrently": "^7.0.0",
+    "dayjs": "^1.11.0",
     "feather-icons": "^4.28.0",
     "foundation-sites": "^6.7.4",
-    "sass": "^1.49.9"
+    "markdown-it": "^12.3.2",
+    "node-fetch": "^2.6.7",
+    "sass": "^1.49.9",
+    "uuid": "^8.3.2",
+    "yaml": "^1.10.2"
   }
 }

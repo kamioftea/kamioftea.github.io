@@ -1,8 +1,9 @@
 ---
 layout: boilerplate.njk
 ---
+{% block cover %}
 {% if coverImage %}
-<header class="cover-image" style="background-image: url({{ coverImage }})">
+<header class="header-image" style="background-image: url({{ coverImage }})">
 	{% if header %}
 		<div class="title-wrapper">
 			<h1>{{ header }}</h1>
@@ -10,6 +11,7 @@ layout: boilerplate.njk
 	{% endif %}
 </header>
 {% endif %}
+{% endblock cover %}
 <main>
 	{% if breadcrumbs %}
 		<nav aria-label="You are here:" role="navigation">

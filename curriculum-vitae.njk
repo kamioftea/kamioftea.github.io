@@ -1,12 +1,17 @@
 ---
+layout: boilerplate.njk
 css: cv
 breadcrumbs:
   - label: Home
     url: "/"
   - label: Curriculum Vitae
 ---
-<div class="cv-header">
-	<div>
+<header class="cv-header">
+	<img src="https://static.goblinoid.co.uk/jeff-horton.uk/profile.jpg" alt="Profile Picture"
+	     title="A photo headshot of Jeff Horton with the asexual pride flag in the background"
+	     class="avatar"
+	/>
+	<div class="bio">
 		<h1>Jeff Horton</h1>
 		<p class="lead text-secondary">
 			Web developer, LARPer, board gamer, geek with a love of mountains
@@ -15,10 +20,21 @@ breadcrumbs:
 	<div>
 		{% include './_includes/contact-details.njk' %}
 	</div>
-	<img src="https://static.goblinoid.co.uk/jeff-horton.uk/profile.jpg" alt="Profile Picture"
-	     title="A photo headshot of Jeff Horton with the asexual pride flag in the background"
-	     class="avatar"/>
-</div>
+</header>
+<main>
+	<nav aria-label="You are here:" role="navigation">
+		<ul class="breadcrumbs">
+			{% for breadcrumb in breadcrumbs %}
+				{% if loop.last %}
+					<li><span class="show-for-sr">Current: </span> {{ breadcrumb.label }}</li>
+					{% elif breadcrumb.url %}
+					<li><a href="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a></li>
+				{% else %}
+					<li class="disabled">{{ breadcrumb.label }}</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
 
 <h2>About Me</h2>
 <p>
@@ -165,3 +181,4 @@ these.
 	colleagues after work.</li>
 </ul>
 <p class="h2" style="font-variant: small-caps">References can be provided on request</p>
+</main>

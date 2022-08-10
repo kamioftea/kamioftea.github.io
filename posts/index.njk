@@ -1,0 +1,11 @@
+<ul>
+{% for post in collections.post | reverse %}
+	<li>
+		<a href="{{post.url | url}}">
+			{{ post.data.title }}
+		</a>
+		<br/>
+		<small>{{ post.date | format('Do MMMM YYYY H:mm') }}</small>
+	</li>
+{% endfor %}
+</ul>
