@@ -137,3 +137,7 @@ main {
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
 }
+
+code[class*="language-"], pre[class*="language-"] {
+  font-size: 0.85em;
+}
