@@ -5,17 +5,16 @@ title: React, Redux, RxJS
 header: React, Redux, RxJS
 date: 2021-06-27T21:54:44.000Z
 updated: 2021-07-04T01:22:09.000Z
-eleventyExcludeFromCollections: true
 coverImage: null
 ---
 
-
 There are a number of single page react apps in Antler, and most use React as a view, Redux as a model, and
 redux-observable as (roughly) a controller. This explains roughly why this was chosen and how these interact. It is
-designed to demistify the existing react/redux apps so you can identify what each part is for and have the context to
+designed to demystify the existing React/Redux apps, so you can identify what each part is for and have the context to
 work out how it is working.
 
-This doc assumes you’ve already setup installing react and setting up the build tools. You can find instrctions for this
+This doc assumes you’ve already setup installing react and setting up the build tools. You can find instructions for 
+this
 here: 
 
 .
@@ -24,14 +23,14 @@ It is also not intended to teach React from scratch.
 
 and the rest of the official react docs already do this really well.
 
-This is now free and if you have the time it is a much better deepdive into Redux from its creator than I could ever do
+This is now free and if you have the time it is a much better deep-dive into Redux from its creator than I could ever do
 myself. It was this series that I used to learn this ion the first place.
 Redux
 
-Managing state between components in React gets very complicated very quickly. If two disparate components need access
-to the same bit of data then that state has to be lifted up to a shared ancestor component. Then both the current value,
+Managing state between components in React gets very complicated, very quickly. If two disparate components need access
+to the same bit of data then that state has to be lifted to a shared ancestor component. Then both the current value,
 and functions to modify the value passed down through each intermediate component’s props to the components that need to
-read and write that piece of data. Repeat this for each individual piece of shared data and it quickly becomes
+read and write that piece of data. Repeat this for each individual piece of shared data, and it quickly becomes
 unmanageable. It can also end up with all your components being really tightly coupled.
 
 Redux solves this problem by providing:
@@ -47,15 +46,16 @@ state).
 
 First install redux: `npm install –-save redux react-redux`
 
-Then there is some boilerplate to add to get it all started. Below is an example doing this all in one file, but usually
+Then there is some boilerplate to add to get it all started. Below is an example doing this all-in-one file, but usually
 I split the store creation into its own file.
 
 {% raw %}
+
 ```jsx
 // index.jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import {Provider} from "react-redux";
+import {Provider} from "posts/react-redux-rxjs";
 import {combineReducers, createStore} from "redux";
 // Or whatever the root component of your app currently is/will be
 import {CountingComponent} from "./count";
@@ -68,7 +68,8 @@ function countReducer(state = 0, action) {
         // this is overly simple, it starts with an initial state of 0 and
         // no actions change that - I'll expand on these later. Note: the
         // default should always be to return the exact same state unchanged.
-        default: return state;
+        default:
+            return state;
     }
 }
 
@@ -113,9 +114,10 @@ To access that state in a component we need to wrap it with Redux’s connect bo
 write the CountingComponent used as the root component.
 
 {% raw %}
+
 ```jsx
 // count.jsx
-import {connect} from "react-redux";
+import {connect} from "posts/react-redux-rxjs";
 import React from "react";
 
 // Usually the count reducer from above would go here
@@ -126,24 +128,24 @@ export const CountingComponent = connect(
     // destructuring/shorthand properties to get and set the required keys with minimal
     // characters 
     ({count}) => ({count}), // <--- read just the count key from the root state, and 
-                            //      pass it to the component as the count prop.
+    //      pass it to the component as the count prop.
     // Will hold functions used to emit actions - I'll cover this later
     {}
 )
-// connect returns a function that should be immediately called, passing the
-// component it is wrapping as the only argument
-(
-    // Here I'll use a Function component: 
-    // https://reactjs.org/docs/components-and-props.html
-    ({count}) => <h1>The count is {count}</h1>
-)()
+    // connect returns a function that should be immediately called, passing the
+    // component it is wrapping as the only argument
+    (
+        // Here I'll use a Function component: 
+        // https://reactjs.org/docs/components-and-props.html
+        ({count}) => <h1>The count is {count}</h1>
+    )()
 ```
 {% endraw %}
 
 This will read the current count (currently 0) from the root stat, and display it. So we can now see it working, but it
-doesn’t do much yet.
+doesn't do much yet.
 
-![An image of a web browser displaying "The count is 0"](__GHOST_URL__/content/images/2021/07/image.png)
+![An image of a web browser displaying "The count is 0"](https://static.goblinoid.co.uk/jeff-horton.uk/6ba87f02-00af-4342-a1a6-9f047b3ccc0b.png)
 
 ### Updating state
 
@@ -179,7 +181,9 @@ export const CountingComponent = connect(
         </div>
 );
 
-So so the instructions to update the state are now bening sent to the store. To have that update the state, the reducer needs to be updated to make a change to its part of the state when that action is received.
+// so the instructions to update the state are now bening sent to the store. To have that 
+// update the state, the reducer needs to be updated to make a change to its part of the 
+// state when that action is received.
 export function countReducer(state = 0, action) {
     switch (action.type) {
         case INCREMENT_COUNT:
@@ -192,21 +196,21 @@ export function countReducer(state = 0, action) {
 ```
 {% endraw %}
 
-This now runs and you can use the buttons to adjust the count.
+This now runs, and you can use the buttons to adjust the count.
 
 ![An image of a web browser displaying "The count is 5" Under which are three buttons labelled +1, +2, and
--1](blob:https://blog.goblinoid.co.uk/39330b92-a3b2-41a1-98c4-09fc5fc1691e)
+-1](https://static.goblinoid.co.uk/jeff-horton.uk/271724ea-7790-469d-b7c7-921be5f79361.png)
 
 ## RxJS and Redux Observable
 
-There are still some things missing however. Often we want to do other things as well as just update the state/view when
-responding to user interaction. Examples of this are posting requests to a web server, or displaying something for a
-short period of time, then removing it. Redux has a concept of middleware that receives all the actions emitted by the
+There are still some things missing, however. Often we want to do other things as well as just update the state/view 
+when responding to user interaction. Examples of this are posting requests to a web server, or displaying something for 
+a short period of time, then removing it. Redux has a concept of middleware that receives all the actions emitted by the
 components and can also dispatch its own actions to the store that allows for these types of responses.
 
 The asynchronous nature of these lends itself very well to functional reactive programming, and
 [RxJS](https://rxjs.dev/guide/overview) is one of the better libraries out there for doing this in Javascript. Based on
-RxJava the concepts are also transferrable to other languages where it is implemented. Redux Observable is a library
+RxJava the concepts are also transferable to other languages where it is implemented. Redux Observable is a library
 that has utilities for using RxJS as Redux middleware. RxJS in simple terms allows you to conceptualise streams of
 events as arrays that also have a time dimension, and allows you to use methods like map, filter, etc. as you would on
 an array.
@@ -214,90 +218,99 @@ an array.
 First, install these extra dependencies `npm install --save rxjs redux-observable` 
 
 Like Redux breaks up the state with a reducer for each key, Redux Observable divides its work into multiple ‘epics’ each
-with their own responsibiliy. We’re going to add a short success message each time the user changes the count that will
+with their own responsibility. We’re going to add a short success message each time the user changes the count that will
 display for 5 seconds then disappear. This will require two epics. One to respond to the INCREMENT_COUNT with another
 action to add a success message with an auto-incrementing id, and another that responds to that ADD_MESSAGE action with
 a REMOVE_MESSAGE action, delayed by 5 seconds.
 
 First lets update the existing counter with a list of messages. There’s nothing new here, this part is more Redux.
+```jsx
 // count.jsx
 // Actions and action producers:
 const ADD_MESSAGE = Symbol('add-message');
 const REMOVE_MESSAGE = Symbol('remove-message');
 
-const addMessage = (id, message) => ({
-type: ADD_MESSAGE,
-id,
-message
-});
+const addMessage = (id, message) => 
+    ({
+        type: ADD_MESSAGE,
+        id,
+        message
+    });
 
-const removeMessage = (id) => ({
-type: REMOVE_MESSAGE,
-id
-});
+const removeMessage = (id) => 
+    ({
+        type: REMOVE_MESSAGE,
+        id
+    });
 
 // Add a reducer to respond to the above
 export function messagesReducer(state = {}, action) {
-switch (action.type) {
-case ADD_MESSAGE:
-// Return a copy of the state object with just the relevant key changed
-return {...state, [action.id]: action.message}
-
-case REMOVE_MESSAGE:
-// Return a copy of the state object with the relevant key filtered out
-return Object.fromEntries(
-Object.entries(state)
-.filter(([k]) => k !== action.id.toString())
-);
-
-default:
-return state;
-}
+    switch (action.type) {
+        case ADD_MESSAGE:
+            // Return a copy of the state object with just the relevant key changed
+            return {...state, [action.id]: action.message}
+        
+        case REMOVE_MESSAGE:
+            // Return a copy of the state object with the relevant key filtered out
+            return Object.fromEntries(
+                Object.entries(state)
+                      .filter(([k]) => k !== action.id.toString())
+            );
+        
+        default:
+        return state;
+    }
 }
 
 // And update the component to show the messages
 export const CountingComponent = connect(
-({count, messages}) => ({count, messages}),
-{incrementCount}
+    ({count, messages}) => ({count, messages}),
+    {incrementCount}
 )(
-({count, messages, incrementCount}) =>
-<div>
-<h1>The count is {count}</h1>
-<button onClick={() => incrementCount()}>+1</button>
-<button onClick={() => incrementCount(2)}>+2</button>
-<button onClick={() => incrementCount(-1)}>-1</button>
-<ul>
-{Object.entries(messages)
-.map(([id, message]) => <li key={id}>{message}</li>)
-}
-</ul>
-</div>
+    ({count, messages, incrementCount}) =>
+        <div>
+            <h1>The count is {count}</h1>
+            <button onClick={() => incrementCount()}>+1</button>
+            <button onClick={() => incrementCount(2)}>+2</button>
+            <button onClick={() => incrementCount(-1)}>-1</button>
+            <ul>
+                {Object.entries(messages)
+                       .map(([id, message]) => <li key={id}>{message}</li>)
+                }
+            </ul>
+        </div>
 );
+```
 
 The new reducer also needs registering in the root reducer. Note I’ve also moved the countReducer into to count.js for
 consistency.
+
+```jsx
 // index.jsx
 // ...
 import {CountingComponent, countReducer, messagesReducer} from "./count";
+//...
 
 const rootReducer = combineReducers({
-count: countReducer,
-messages: messagesReducer,
+    count: countReducer,
+    messages: messagesReducer,
 });
 // ...
+```
 
-That done, there now needs to be some epics to add and remove those messages before there is a noticable change. An epic
-is a function that takes two observable streams; action$ and state$, and returns a new stream of additional actions.
-Most of the time you just need the actions, but occasionally you need access to the rest of the state and not just what
-is contained in the action. Seach Antler for withLatestFrom(state$) for examples of doing this.
+That done, there now needs to be some epics to add and remove those messages before there is a noticeable change. An 
+epic is a function that takes two observable streams; action$ and state$, and returns a new stream of additional 
+actions. Most of the time you just need the actions, but occasionally you need access to the rest of the state and not 
+just what is contained in the action. Search Antler for withLatestFrom(state$) for examples of doing this.
 
 It can be easy to create unintentional infinite loops here. Each message output by the epic is added to the stream of
 messages going through Redux, including being passed back in to all the epics. If you emit a message of the same type
-that came in, that will just loop forever. Likewise if a pair of epics each respond to a type that the other emits, in
+that came in, that will just loop forever. Likewise, if a pair of epics each respond to a type that the other emits, in
 combination they will keep responding to each other’s actions forever.
 
 We need two epics, one that maps INCREMENT_COUNT actions to ADD_MESSAGE actions, and one that maps those ADD_MESSAGE
 actions into REMOVE_MESSAGE actions, but with a delay.
+```jsx
 // count.jsx
 // New imports for all the RxJS/redux-observable
 import {map} from "rxjs/operators";
@@ -315,38 +328,39 @@ export const addCountMessagesEpic = action$ =>
 // of that to the second argument and so on, the final argument's output is
 // published to the stream that pipe returns
 action$.pipe(
-// ofType is a utility from redux-observable, it filters to only the
-// message type(s) provided
-ofType(INCREMENT_COUNT),
-// straight up map the increment into a message
-map(({delta}) => addMessage(
-id++,
-// template strings are awesome!
-`You ${delta >= 0 ? 'incremented' : 'decremented'}` +
-` the count by ${Math.abs(delta)}.`
-))
+    // ofType is a utility from redux-observable, it filters to only the
+    // message type(s) provided
+    ofType(INCREMENT_COUNT),
+    // straight up map the increment into a message
+    map(({delta}) => addMessage(
+        id++,
+        // template strings are awesome!
+        `You ${delta >= 0 ? 'incremented' : 'decremented'}` +
+        ` the count by ${Math.abs(delta)}.`
+    ))
 )
 
 export const removeMessagesEpic = action$ =>
-action$.pipe(
-ofType(ADD_MESSAGE),
-map(({id}) => removeMessage(id)),
-// This adds the delay in ms. All of the timing/scheduling is handled #
-// inside RxJS and 'just works'
-delay(5000)
-)
-
+    action$.pipe(
+        ofType(ADD_MESSAGE),
+        map(({id}) => removeMessage(id)),
+        // This adds the delay in ms. All of the timing/scheduling is handled #
+        // inside RxJS and 'just works'
+        delay(5000)
+    )
+```
 Like with reducers, epics need to be registered with Redux to actually be used:
+```jsx
 // index.jsx
 // ...
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {
-addCountMessagesEpic,
-CountingComponent,
-countReducer,
-messagesReducer,
-removeMessagesEpic
+    addCountMessagesEpic,
+    CountingComponent,
+    countReducer,
+    messagesReducer,
+    removeMessagesEpic
 } from "./count";
 
 // If webpack is built using 'development' mode this will log all the
@@ -355,20 +369,20 @@ removeMessagesEpic
 // RxJS has a built in EMPTY observable the never emits anything just
 // for cases like this
 const loggingEpic = action$ => {
-if(process.env.NODE_ENV === 'development') {
-action$.subscribe(msg => console.log('Action:', new Date(), msg));
-}
+    if(process.env.NODE_ENV === 'development') {
+        action$.subscribe(msg => console.log('Action:', new Date(), msg));
+    }
 
-return EMPTY;
+    return EMPTY;
 };
 
 // Set up a rootEpic similar to the rootReducer. The stream of actions will be pushed to 
 // each of these, and the returned streams will all be merged together, ready to be 
 // fed into Redux
 const rootEpic = combineEpics(
-loggingEpic,
-addCountMessagesEpic,
-removeMessagesEpic
+    loggingEpic,
+    addCountMessagesEpic,
+    removeMessagesEpic
 );
 
 // The middleware is passed as a second argument to Redux.createStore, this is all just 
@@ -379,21 +393,23 @@ const epicMiddleware = createEpicMiddleware();
 const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
 
 epicMiddleware.run(rootEpic);
+```
 
 And that is everything. You should now see a message show each time you press a button, only to disappear after 5
 seconds.
-Immutable.js
-There is one final issue with the setup described above. A key feature of React is that it has it’s own internal
-representation of the DOM, and it can calculate the diff beween the new view and the old, and just update the bits of
+
+## Immutable.js
+There is one final issue with the setup described above. A key feature of React is that it has its own internal
+representation of the DOM, and it can calculate the diff between the new view and the old, and just update the bits of
 the DOM tha have changed. 
 
 There is an additional optimisation, a component can implement shouldComponentUpdate(nextProps, nextState) which should
-return true or false if given the change (or not) in state/props whether the view will change or not. This allows react
+return true or false if given the change (or not) in state/props whether the view will change or not. This allows React
 to skip calling the render method for that component, and skip doing the diff of that part of its internal
 representation of the DOM.
 
 The simplest way to implement this is to loop over all the props and state keys and compare them to the current values
-with ===. This is so common in fact that there is React.PureComponent that your component classes can extend which
+with `===`. This is so common in fact that there is React.PureComponent that your component classes can extend which
 includes this, and Function components also use that implementation by default. Because state for the app is held at the
 root level, any change requires React to check the whole tree for updates, liberal use of Pure/Function components makes
 this much quicker.
@@ -402,46 +418,48 @@ You may have noticed the wierd extra steps I took to return a new object in the 
 because the downside of this strategy is if you just update a property of an object, it is still the same object: The
 === check then passes and the component isn’t re-rendered. This copying of huge chunks of the application state is not
 performant. The code needed to make sure you return a copy can also be quite verbose, and it’s easy to make a mistake
-that then leads to subtle rendering bugs when you accidentaly mutate an object rather than copy it.
+that then leads to subtle rendering bugs when you accidentally mutate an object rather than copy it.
 
 This is where 
 
 is useful. It provides a bunch of primitive objects that you can’t accidentally mutate, and that can be efficiently
 copied. It can be installed with npm install --save immutable. To give an example, I’ll update the messagesReducer to
 use it:
+```jsx
 // count.jsx
 // ...
 import {Map} from "immutable"
 
 // ...
 export function messagesReducer(state = Map(), action) {
-switch (action.type) {
-case ADD_MESSAGE:
-// All the methods on the immutable objects return a new copy with the
-// appropriate update applied
-return state.set(action.id, action.message);
-
-case REMOVE_MESSAGE:
-return state.remove(action.id)
-
-default:
-return state;
-}
+    switch (action.type) {
+            case ADD_MESSAGE:
+            // All the methods on the immutable objects return a new copy with the
+            // appropriate update applied
+            return state.set(action.id, action.message);
+        
+        case REMOVE_MESSAGE:
+            return state.remove(action.id)
+        
+        default:
+            return state;
+    }
 }
 
 // ... Inside the component. the `ul` of messages needs to be rendered slightly 
 // differently now messages is an immutable map rather than a javascript object
 <ul>
-{messages.entrySeq()
-.map(([id, message]) => <li key={id}>{message}</li>)
-}
+    {messages.entrySeq()
+             .map(([id, message]) => <li key={id}>{message}</li>)
+    }
 </ul>
-
+```
 With those changes the apps behaviour is no different, but the code for updating the messages is cleaner and more
 efficient.
-Miscellany
 
-RxJs comes with a built in websocket client, and it is this that is used to connect to the websocket server. This
+## Miscellany
+
+RxJs comes with a built-in websocket client, and it is this that is used to connect to the websocket server. This
 includes automatic reconnection logic within the websocket epic.
 
 Sometimes even the PureComponents and immutable state is not efficient enough. One example of this is the description
@@ -467,10 +485,3 @@ Example
 The full code for the example built through-out the above process should look something like these two files.
 
 index.jsx
-
-
-<img src="https://static.goblinoid.co.uk/jeff-horton.uk/6ba87f02-00af-4342-a1a6-9f047b3ccc0b.png" alt="TODO" style="width: 343; height: 153;" />
-
-<img src="https://static.goblinoid.co.uk/jeff-horton.uk/271724ea-7790-469d-b7c7-921be5f79361.png" alt="TODO" style="width: 245; height: 178;" />
-
-d
