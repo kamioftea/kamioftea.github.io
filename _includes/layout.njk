@@ -2,10 +2,10 @@
 layout: boilerplate.njk
 ---
 {% if coverImage %}
-<header class="cover-image" style="background-image: url({{ coverImage }})">
+<header class="header-image" style="background-image: url({{ coverImage }}); {{ coverImageCss }}">
 	{% if header %}
 		<div class="title-wrapper">
-			<h1>{{ header }}</h1>
+			<h1>{{ header | safe}}</h1>
 		</div>
 	{% endif %}
 </header>
