@@ -2,3 +2,5 @@
 /kamioftea.github.io.iml
 /_site/
 /node_modules
+*.local
+*.local.*

@@ -1,0 +1,56 @@
+---
+layout: layout.njk
+coverImage: https://static.goblinoid.co.uk/jeff-horton.uk/40K-Cover.jpg
+coverImageCss: "background-position-y: 15%"
+header: Hive Fleet Morphallaxis <br><small>A Warhammer 40k Crusade force</small>
+title: Hive Fleet Morphallaxis - A Warhammer 40k Crusade force
+---
+<h2>Resources</h2>
+<dl class="summary-list">
+	<dt>Battle tally:</dt>
+	<dd>0</dd>
+
+	<dt>Battles won:</dt>
+	<dd>0</dd>
+
+	<dt>Requisition Points:</dt>
+	<dd>3</dd>
+
+	<dt>Supply Limit:</dt>
+	<dd>1100</dd>
+
+	<dt>Supply Used:</dt>
+	<dd>
+		{% set pointsTotal = 0 %}
+		{% for unit in collections.unit %}
+			{% set pointsTotal = pointsTotal + unit.data.points %}
+		{% endfor %}
+		{{ pointsTotal }}
+	</dd>
+</dl>
+<h2>Units</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Points Value</th>
+			<th>Crusade Points</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for unit in collections.unit %}
+			<tr>
+				<td>
+					<a href="{{ unit.url }}">{{ unit.data.name }}</a>
+				</td>
+				<td>
+					{{ unit.data.quantity }} {{ unit.data.type -}}
+					{{- "s" if (unit.data.quantity | default(1)) != 1 }}
+				</td>
+				<td>{{ unit.data.points }}</td>
+				<td>{{ unit.data.crusadePoints | default(0) }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
