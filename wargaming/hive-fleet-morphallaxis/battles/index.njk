@@ -1,0 +1,40 @@
+---
+header: Battles
+title: Battles
+breadcrumbs:
+  - label: 'Home'
+    url: '/'
+  - label: 'Wargaming'
+    url: '/wargaming'
+  - label: 'Hive Fleet Morphallaxis'
+    url: '/wargaming/hive-fleet-morphallaxis'
+  - label: Battles
+---
+<table>
+  <thead>
+    <tr>
+      <th>Battle</th>
+      <th>Opponent</th>
+      <th>Size</th>
+      <th>Scenario</th>
+      <th>Outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for battle in collections.battle %}
+        <tr>
+          <td>
+            <a href="{{ battle.url }}">{{ battle.data.name }}</a>
+          </td>
+          <td>{{ battle.data.opponent }}</td>
+          <td>{{ battle.data.size }}</td>
+          <td>{{ battle.data.scenario }}</td>
+          <td>{{ battle.data.outcome }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="5">No battles have been fought.</td>
+        </tr>
+      {% endfor %}
+  </tbody>
+</table>
