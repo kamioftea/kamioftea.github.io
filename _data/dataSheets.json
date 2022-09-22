@@ -1,0 +1,11 @@
+{
+  "Gargoyle": {
+    "battlefieldRole": "Troops"
+  },
+  "Termagant": {
+    "battlefieldRole": "Troops"
+  },
+  "Trygon Prime": {
+    "battlefieldRole": "HQ"
+  }
+}

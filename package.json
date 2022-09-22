@@ -18,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy-plugin-inclusive-language": "^1.0.3",
     "concurrently": "^7.0.0",
     "feather-icons": "^4.28.0",
     "foundation-sites": "^6.7.4",

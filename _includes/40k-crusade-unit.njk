@@ -2,6 +2,73 @@
 layout: layout.njk
 ---
 <h1>{{ name }}</h1>
-<h2 class="subheader">{{ type }}</h2>
+<h2 class="subheader">
+    {{ quantity }} {{ type -}}
+    {{- "s" if (quantity | default(1)) != 1 }}
+</h2>
 
-TODO
+<dl class="unit-spec">
+    <dt>Battlefield Role</dt>
+    <dd>{{ dataSheets[type].battlefieldRole }}</dd>
+
+    {% if loadout %}
+        <dt>Loadout</dt>
+        <dd>
+            <ul>
+                {% for item in loadout -%}
+                    <li>{{ item }}</li>
+                {%- endfor %}
+            </ul>
+        </dd>
+    {% endif %}
+
+    {% if pyschicPowers %}
+        <dt>Psychic Powers</dt>
+        <dd>
+            <ul>
+                {% for item in pyschicPowers -%}
+                    <li>{{ item }}</li>
+                {%- endfor %}
+            </ul>
+        </dd>
+    {% endif %}
+
+    {% if warlordTraits %}
+        <dt>Warlord Traits</dt>
+        <dd>
+            <ul>
+                {% for item in warlordTraits -%}
+                    <li>{{ item }}</li>
+                {%- endfor %}
+            </ul>
+        </dd>
+    {% endif %}
+
+    {% if relics %}
+        <dt>Relics</dt>
+        <dd>
+            <ul>
+                {% for item in relics -%}
+                    <li>{{ item }}</li>
+                {%- endfor %}
+            </ul>
+        </dd>
+    {% endif %}
+</dl>
+
+<dl class="summary-list">
+    <dt>Points:</dt>
+    <dd>{{ points }}</dd>
+
+    <dt>Crusade Points:</dt>
+    <dd>{{ crusadePoints | default(0) }}</dd>
+
+    <dt>Battles played:</dt>
+    <dd>{{ battlesPlayed | default(0) }}</dd>
+
+    <dt>Battles survived:</dt>
+    <dd>{{ battlesSurvived | default(0) }}</dd>
+
+    <dt>Experience Points:</dt>
+    <dd>{{ xp | default(0) }}</dd>
+</dl>

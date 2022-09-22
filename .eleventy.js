@@ -1,8 +1,10 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const feather = require('feather-icons');
+const inclusiveLangPlugin = require("@11ty/eleventy-plugin-inclusive-language");
 
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPlugin(EleventyRenderPlugin)
+    eleventyConfig.addPlugin(inclusiveLangPlugin);
 
     // IntelliJ doesn't like frontmatter before <!doctype html> in root layout
     // So add the layout defaults here
