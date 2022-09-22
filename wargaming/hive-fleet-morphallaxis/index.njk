@@ -53,7 +53,7 @@ breadcrumbs:
 		</tr>
 	</thead>
 	<tbody>
-		{% for unit in collections.unit %}
+		{% for unit in (collections.unit | sortUnits) %}
 			<tr>
 				<td>
 					<a href="{{ unit.url }}">{{ unit.data.name }}</a>
