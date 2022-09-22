@@ -1,0 +1,62 @@
+---
+layout: layout.njk
+---
+<dl class="summary-list">
+	<dt>Opponent</dt>
+	<dd>{{ opponent }}</dd>
+
+	<dt>Size</dt>
+	<dd>{{ size }}</dd>
+
+	<dt>Scenario</dt>
+	<dd>{{ scenario }}</dd>
+
+	<dt>Outcome</dt>
+	<dd>{{ outcome }}</dd>
+</dl>
+
+<h2>Units</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Points Value</th>
+			<th>Crusade Points</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for unit in collections.unit | intersect(units, 'data.name') %}
+			<tr>
+				<td>
+					<a href="{{ unit.url }}">{{ unit.data.name }}</a>
+				</td>
+				<td>
+					{{ unit.data.quantity }} {{ unit.data.type -}}
+					{{- "s" if (unit.data.quantity | default(1)) != 1 }}
+				</td>
+				<td>{{ unit.data.points }}</td>
+				<td>{{ unit.data.crusadePoints | default(0) }}</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="4">No units selected.</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="2">Totals</th>
+			<td>
+				{{ collections.unit | intersect(units, 'data.name') | lens('data.points') | sum }}
+			</td>
+			<td>
+				{{ collections.unit | intersect(units, 'data.name')
+				                    | lens('data.crusadePoints')
+				                    | sum }}
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+{{ content | safe }}

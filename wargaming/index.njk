@@ -1,0 +1,11 @@
+---
+title: Wargaming
+heading: Wargaming
+---
+<ul>
+    {% for landingPage in collections.wargaming %}
+        <li>
+            <a href="{{ landingPage.url }}">{{ landingPage.data.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
