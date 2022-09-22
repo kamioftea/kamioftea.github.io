@@ -39,7 +39,7 @@
       }
     }
   },
-  "Tyranid Warrior": {"battlefieldRole": "Troop"},
+  "Tyranid Warrior": {"battlefieldRole": "Troops"},
   "Termagant": {
     "battlefieldRole": "Troops",
     "stats": {
@@ -72,6 +72,6 @@
       }
     }
   },
-  "Genestealer": {"battlefieldRole": "Elite"},
-  "Parasite of Mortrex": {"battlefieldRole": "Fast attack"}
+  "Genestealer": {"battlefieldRole": "Elites"},
+  "Parasite of Mortrex": {"battlefieldRole": "Fast Attack"}
 }
