@@ -3,72 +3,95 @@ layout: layout.njk
 ---
 <h1>{{ name }}</h1>
 <h2 class="subheader">
-    {{ quantity }} {{ type -}}
-    {{- "s" if (quantity | default(1)) != 1 }}
+	{{ quantity }} {{ type -}}
+	{{- "s" if (quantity | default(1)) != 1 }}
 </h2>
 
-<dl class="unit-spec">
-    <dt>Battlefield Role</dt>
-    <dd>{{ dataSheets[type].battlefieldRole }}</dd>
+<div class="two-columns">
+	<dl class="unit-spec">
+		<dt>Battlefield Role</dt>
+		<dd>{{ dataSheets[type].battlefieldRole }}</dd>
 
-    {% if loadout %}
-        <dt>Loadout</dt>
-        <dd>
-            <ul>
-                {% for item in loadout -%}
-                    <li>{{ item }}</li>
-                {%- endfor %}
-            </ul>
-        </dd>
-    {% endif %}
+		{% if loadout %}
+			<dt>Loadout</dt>
+			<dd>
+				<ul>
+					{% for item in loadout -%}
+						<li>{{ item }}</li>
+					{%- endfor %}
+				</ul>
+			</dd>
+		{% endif %}
+	</dl>
 
-    {% if pyschicPowers %}
-        <dt>Psychic Powers</dt>
-        <dd>
-            <ul>
-                {% for item in pyschicPowers -%}
-                    <li>{{ item }}</li>
-                {%- endfor %}
-            </ul>
-        </dd>
-    {% endif %}
+	<dl class="unit-spec">
+		{% if psychicPowers %}
+			<dt>Psychic Powers</dt>
+			<dd>
+				<ul>
+					{% for item in psychicPowers -%}
+						<li>{{ item }}</li>
+					{%- endfor %}
+				</ul>
+			</dd>
+		{% endif %}
 
-    {% if warlordTraits %}
-        <dt>Warlord Traits</dt>
-        <dd>
-            <ul>
-                {% for item in warlordTraits -%}
-                    <li>{{ item }}</li>
-                {%- endfor %}
-            </ul>
-        </dd>
-    {% endif %}
+		{% if warlordTraits %}
+			<dt>Warlord Traits</dt>
+			<dd>
+				<ul>
+					{% for item in warlordTraits -%}
+						<li>{{ item }}</li>
+					{%- endfor %}
+				</ul>
+			</dd>
+		{% endif %}
 
-    {% if relics %}
-        <dt>Relics</dt>
-        <dd>
-            <ul>
-                {% for item in relics -%}
-                    <li>{{ item }}</li>
-                {%- endfor %}
-            </ul>
-        </dd>
-    {% endif %}
+		{% if relics %}
+			<dt>Relics</dt>
+			<dd>
+				<ul>
+					{% for item in relics -%}
+						<li>{{ item }}</li>
+					{%- endfor %}
+				</ul>
+			</dd>
+		{% endif %}
+	</dl>
+</div>
+
+<dl class="summary-list">
+	<dt>Points:</dt>
+	<dd>{{ points }}</dd>
+
+	<dt>Crusade Points:</dt>
+	<dd>{{ crusadePoints | default(0) }}</dd>
+
+	<dt>Battles played:</dt>
+	<dd>{{ battlesPlayed | default(0) }}</dd>
+
+	<dt>Battles survived:</dt>
+	<dd>{{ battlesSurvived | default(0) }}</dd>
+
+	<dt>Experience Points:</dt>
+	<dd>{{ xp | default(0) }}</dd>
 </dl>
 
 <dl class="summary-list">
-    <dt>Points:</dt>
-    <dd>{{ points }}</dd>
+	<dt>Rank:</dt>
+	<dd>{{ rank | default("Battle-ready") }}</dd>
 
-    <dt>Crusade Points:</dt>
-    <dd>{{ crusadePoints | default(0) }}</dd>
+	<dt>Units killed:</dt>
+	<dd>{{ killTally | default(0) }}</dd>
 
-    <dt>Battles played:</dt>
-    <dd>{{ battlesPlayed | default(0) }}</dd>
+	<dt>...with psychic:</dt>
+	<dd>{{ psychicTally | default(0) }}</dd>
 
-    <dt>Battles survived:</dt>
-    <dd>{{ battlesSurvived | default(0) }}</dd>
+	<dt>...at range</dt>
+	<dd>{{ rangeTally | default(0) }}</dd>
 
-    <dt>Experience Points:</dt>
-    <dd>{{ xp | default(0) }}</dd>
+	<dt>...in melee</dt>
+	<dd>{{ meleeTally | default(0) }}</dd>
 </dl>
+
+{{ content | safe }}
