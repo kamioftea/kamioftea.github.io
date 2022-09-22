@@ -16,6 +16,7 @@ breadcrumbs:
       <th>Battle</th>
       <th>Opponent</th>
       <th>Size</th>
+      <th>Scenario</th>
       <th>Outcome</th>
     </tr>
   </thead>
@@ -27,11 +28,12 @@ breadcrumbs:
           </td>
           <td>{{ battle.data.opponent }}</td>
           <td>{{ battle.data.size }}</td>
+          <td>{{ battle.data.scenario }}</td>
           <td>{{ battle.data.outcome }}</td>
         </tr>
       {% else %}
         <tr>
-          <td colspan="4">No battles have been fought.</td>
+          <td colspan="5">No battles have been fought.</td>
         </tr>
       {% endfor %}
   </tbody>

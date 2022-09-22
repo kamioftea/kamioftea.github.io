@@ -1,7 +1,7 @@
 module.exports = {
     eleventyComputed: {
         breadcrumbs: ({name, breadcrumbs}) =>
-                         breadcrumbs ?? [
+                         breadcrumbs || [
                              {label: 'Home', url: '/'},
                              {label: 'Wargaming', url: '/wargaming'},
                              {
