@@ -22,11 +22,13 @@ breadcrumbs:
 	</dd>
 
 	<dt>Battles won:</dt>
-	<dd>0</dd>
+	<dd>
+		{{  collections.battle | intersect(['Win'], 'data.outcome') | length }}
+	</dd>
 
 	<dt>Requisition Points:</dt>
 	<dd>
-		1
+		3
 		(<a href="requisition-log">Log</a>)
 	</dd>
 
@@ -51,10 +53,10 @@ breadcrumbs:
 	<dd>Hive World</dd>
 
 	<dt>Biomass Consumed</dt>
-	<dd>0</dd>
+	<dd>3</dd>
 
 	<dt>Resistance Crushed</dt>
-	<dd>0</dd>
+	<dd>3</dd>
 </dl>
 <table>
 	<thead>
