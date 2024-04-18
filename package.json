@@ -23,5 +23,8 @@
     "feather-icons": "^4.28.0",
     "foundation-sites": "^6.7.4",
     "sass": "^1.49.9"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

@@ -5,10 +5,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ '/root.css' | url}}">
-	{% if css %}
-		{% set cssPath %}/{{ css }}.css{% endset %}
-	<link rel="stylesheet" href="{{ cssPath | url}}">
-	{% endif %}
+	{% if css -%}
+		{%- set cssPath %}/{{ css }}.css{% endset -%}
+	    <link rel="stylesheet" href="{{ cssPath | url}}">
+	{%- endif %}
+	{% for stylesheet in extraStyles -%}
+		<link rel='stylesheet' href='{{ stylesheet }}' />
+	{%- endfor %}
+	{% for script in extraScripts -%}
+		<script src='{{ script }}'></script>
+	{%- endfor %}
 	<link rel="icon" type="image/png" href="/favicon.png">
 	<title>{{ title }}</title>
 </head>
