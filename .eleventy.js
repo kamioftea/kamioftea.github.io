@@ -3,6 +3,8 @@ const feather = require('feather-icons');
 const inclusiveLangPlugin = require("@11ty/eleventy-plugin-inclusive-language");
 const dataSheets = require('./_data/dataSheets.json');
 
+require('dotenv').config()
+
 function buildDeepGetter(path) {
     if(!path) return (obj) => obj
     const [key, ...rest] = path.split('.');
@@ -53,6 +55,7 @@ module.exports = function(eleventyConfig) {
     // So add the layout defaults here
     eleventyConfig.addGlobalData('title', 'Jeff Horton')
     eleventyConfig.addGlobalData('layout', 'layout.njk')
+    eleventyConfig.addGlobalData('maptilerKey',process.env.MAPTILER_KEY ?? '')
 
     eleventyConfig.addPassthroughCopy('assets')
     eleventyConfig.addPassthroughCopy('./favicon.png')
@@ -78,6 +81,6 @@ module.exports = function(eleventyConfig) {
     return {
         passthroughFileCopy: true,
         markdownTemplateEngine: 'njk',
-        pathPrefix: process.env.PATH_PREFIX ?? ''
+        pathPrefix: process.env.PATH_PREFIX ?? '',
     }
 };
