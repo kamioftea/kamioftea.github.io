@@ -1,0 +1,206 @@
+<!doctype html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/root.css">
+	<link rel="stylesheet" href="/map.css">
+	<link rel='stylesheet' href='https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css' />
+	<script src='https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js'></script>
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<title>Scottish 40 peaks | Jeff Horton</title>
+</head>
+<body>
+	
+<div id="map"></div>
+
+<script>
+    const data = [
+        {
+            "name": "Ben Nevis [Beinn Nibheis]",
+            "position":  [56.796891, -5.003675]
+        },
+        {
+            "name": "Ben Macdui [Beinn Macduibh]",
+            "position":  [57.070368, -3.669099]
+        },
+        {
+            "name": "Braeriach",
+            "position":  [57.078307, -3.72839]
+        },
+        {
+            "name": "Cairn Toul",
+            "position":  [57.054406, -3.710757]
+        },
+        {
+            "name": "Carn na Criche",
+            "position":  [57.063181, -3.75066]
+        },
+        {
+            "name": "Sgor an Lochain Uaine",
+            "position":  [57.058376, -3.725897]
+        },
+        {
+            "name": "Cairn Gorm",
+            "position":  [57.116714, -3.644477]
+        },
+        {
+            "name": "Aonach Beag",
+            "position":  [56.799998, -4.954138]
+        },
+        {
+            "name": "Aonach Mor",
+            "position":  [56.812941, -4.961712]
+        },
+        {
+            "name": "Carn Mor Dearg",
+            "position":  [56.805246, -4.986616]
+        },
+        {
+            "name": "Ben Lawers",
+            "position":  [56.544921, -4.220876]
+        },
+        {
+            "name": "Cairn Lochan",
+            "position":  [57.102743, -3.676976]
+        },
+        {
+            "name": "Stob Coire an t-Saighdeir",
+            "position":  [57.0466, -3.711289]
+        },
+        {
+            "name": "Beinn a' Bhuird [Beinn a' Bhuird North Top]",
+            "position":  [57.08759, -3.499383]
+        },
+        {
+            "name": "Sron na Lairige",
+            "position":  [57.084922, -3.710545]
+        },
+        {
+            "name": "Beinn Mheadhoin",
+            "position":  [57.095849, -3.611464]
+        },
+        {
+            "name": "Carn Eighe",
+            "position":  [57.287701, -5.115159]
+        },
+        {
+            "name": "Mam Sodhail",
+            "position":  [57.279801, -5.120267]
+        },
+        {
+            "name": "Beinn a' Bhuird South Top",
+            "position":  [57.069523, -3.499347]
+        },
+        {
+            "name": "Stob Choire Claurigh",
+            "position":  [56.823786, -4.849624]
+        },
+        {
+            "name": "Stob Coire an t-Sneachda",
+            "position":  [57.106822, -3.65875]
+        },
+        {
+            "name": "Ben More",
+            "position":  [56.385952, -4.540087]
+        },
+        {
+            "name": "Ben Avon - Leabaidh an Daimh Bhuidhe",
+            "position":  [57.099347, -3.434438]
+        },
+        {
+            "name": "Stob Binnein",
+            "position":  [56.370717, -4.535753]
+        },
+        {
+            "name": "Beinn Bhrotain",
+            "position":  [57.009868, -3.723797]
+        },
+        {
+            "name": "Lochnagar - Cac Carn Beag",
+            "position":  [56.960272, -3.245261]
+        },
+        {
+            "name": "Derry Cairngorm",
+            "position":  [57.062801, -3.622004]
+        },
+        {
+            "name": "Sgurr na Lapaich",
+            "position":  [57.369311, -5.059726]
+        },
+        {
+            "name": "Sgurr nan Ceathramhnan [Sgurr nan Ceathreamhnan]",
+            "position":  [57.254911, -5.222732]
+        },
+        {
+            "name": "Bidean nam Bian",
+            "position":  [56.642759, -5.029335]
+        },
+        {
+            "name": "Ben Alder",
+            "position":  [56.813804, -4.46509]
+        },
+        {
+            "name": "Stob a' Choire Dhomhain",
+            "position":  [57.289921, -5.102448]
+        },
+        {
+            "name": "Geal-charn",
+            "position":  [56.837836, -4.509694]
+        },
+        {
+            "name": "Ben Lui [Beinn Laoigh]",
+            "position":  [56.397004, -4.810509]
+        },
+        {
+            "name": "Binnein Mor",
+            "position":  [56.754376, -4.925796]
+        },
+        {
+            "name": "An Riabhachan",
+            "position":  [57.362429, -5.104728]
+        },
+        {
+            "name": "Creag Meagaidh",
+            "position":  [56.952023, -4.602117]
+        },
+        {
+            "name": "Ben Cruachan",
+            "position":  [56.426841, -5.131802]
+        },
+        {
+            "name": "Meall Garbh",
+            "position":  [56.566131, -4.207698]
+        },
+        {
+            "name": "Stob Coire na Ceannain",
+            "position":  [56.830392, -4.840552]
+        }
+    ];
+
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=',
+        center: [ -5.003675, 56.796891],
+        zoom: 6
+    });
+
+    let bbox = [
+        [Math.min(...data.map(r => r.position[1])), Math.min(...data.map(r => r.position[0]))],
+        [Math.max(...data.map(r => r.position[1])), Math.max(...data.map(r => r.position[0]))]
+    ];
+    map.fitBounds(bbox, {
+        padding: {top: 40, bottom:25, left: 15, right: 5}
+    });
+
+    data.forEach(({name, position: [long, lat]}) =>
+        new maplibregl.Marker()
+            .setLngLat([lat, long])
+            .setPopup(new maplibregl.Popup().setHTML(`<p>${name}</p>`))
+            .addTo(map)
+        )
+</script>
+
+</body>
+</html>

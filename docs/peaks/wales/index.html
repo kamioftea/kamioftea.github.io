@@ -1,0 +1,210 @@
+<!doctype html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/root.css">
+	<link rel="stylesheet" href="/map.css">
+	<link rel='stylesheet' href='https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css' />
+	<script src='https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js'></script>
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<title>Welsh 40 peaks | Jeff Horton</title>
+</head>
+<body>
+	<div id="map"></div>
+
+<script>
+
+
+    const data = [
+        {
+            "name": "Snowdon - Yr Wyddfa",
+            "position":  [53.068496, -4.076231]
+        },
+        {
+            "name": "Crib y Ddysgl",
+            "position":  [53.075519, -4.07518]
+        },
+        {
+            "name": "Carnedd Llewelyn",
+            "position":  [53.160168, -3.970333]
+        },
+        {
+            "name": "Carnedd Dafydd",
+            "position":  [53.147738, -4.000839]
+        },
+        {
+            "name": "Glyder Fawr",
+            "position":  [53.10147, -4.029164]
+        },
+        {
+            "name": "Glyder Fach",
+            "position":  [53.104815, -4.008407]
+        },
+        {
+            "name": "Pen yr Ole Wen",
+            "position":  [53.137656, -4.010641]
+        },
+        {
+            "name": "Foel Grach",
+            "position":  [53.174077, -3.963234]
+        },
+        {
+            "name": "Yr Elen",
+            "position":  [53.166601, -3.985215]
+        },
+        {
+            "name": "Y Garn",
+            "position":  [53.115691, -4.047079]
+        },
+        {
+            "name": "Foel-fras",
+            "position":  [53.194157, -3.953149]
+        },
+        {
+            "name": "Elidir Fawr",
+            "position":  [53.130647, -4.076431]
+        },
+        {
+            "name": "Crib Goch",
+            "position":  [53.076145, -4.055175]
+        },
+        {
+            "name": "Tryfan",
+            "position":  [53.114898, -3.997491]
+        },
+        {
+            "name": "Aran Fawddwy",
+            "position":  [52.787016, -3.687855]
+        },
+        {
+            "name": "Y Lliwedd",
+            "position":  [53.059479, -4.057053]
+        },
+        {
+            "name": "Cadair Idris - Penygadair",
+            "position":  [52.699618, -3.908777]
+        },
+        {
+            "name": "Pen y Fan",
+            "position":  [51.884031, -3.436765]
+        },
+        {
+            "name": "Aran Benllyn",
+            "position":  [52.804058, -3.681824]
+        },
+        {
+            "name": "Moel Siabod",
+            "position":  [53.073185, -3.934069]
+        },
+        {
+            "name": "Mynydd Moel",
+            "position":  [52.705782, -3.884874]
+        },
+        {
+            "name": "Arenig Fawr",
+            "position":  [52.917116, -3.745937]
+        },
+        {
+            "name": "Llwytmor",
+            "position":  [53.203902, -3.963564]
+        },
+        {
+            "name": "Pen yr Helgi Du",
+            "position":  [53.148604, -3.948598]
+        },
+        {
+            "name": "Cadair Berwyn",
+            "position":  [52.8806, -3.380993]
+        },
+        {
+            "name": "Foel-goch",
+            "position":  [53.130382, -4.05123]
+        },
+        {
+            "name": "Carnedd y Filiast",
+            "position":  [53.14387, -4.064135]
+        },
+        {
+            "name": "Waun Fach",
+            "position":  [51.962786, -3.143186]
+        },
+        {
+            "name": "Y Foel Goch",
+            "position":  [53.10472, -3.976462]
+        },
+        {
+            "name": "Fan Brycheiniog - Twr y Fan Foel",
+            "position":  [51.884672, -3.709565]
+        },
+        {
+            "name": "Pen y Gadair Fawr",
+            "position":  [51.951961, -3.12264]
+        },
+        {
+            "name": "Pen Llithrig y Wrach",
+            "position":  [53.14226, -3.920754]
+        },
+        {
+            "name": "Cribyn",
+            "position":  [51.881803, -3.419521]
+        },
+        {
+            "name": "Craig Cwm Amarch",
+            "position":  [52.691439, -3.90919]
+        },
+        {
+            "name": "Cadair Bronwen",
+            "position":  [52.901461, -3.372899]
+        },
+        {
+            "name": "Moel Hebog",
+            "position":  [53.000507, -4.140093]
+        },
+        {
+            "name": "Glasgwm",
+            "position":  [52.760153, -3.725275]
+        },
+        {
+            "name": "Drum",
+            "position":  [53.20761, -3.935341]
+        },
+        {
+            "name": "Moelwyn Mawr",
+            "position":  [52.984252, -4.000142]
+        },
+        {
+            "name": "Waun Rydd",
+            "position":  [51.876465, -3.363829]
+        }
+    ];
+
+    const map = new maplibregl.Map({
+        container: 'map',
+        style:
+                   'https://api.maptiler.com/maps/outdoor-v2/style.json?key=LgpC4w8Kg89AjzbTDK1O',
+        center: [ -5.003675, 56.796891],
+        zoom: 6
+    });
+
+    let bbox = [
+        [Math.min(...data.map(r => r.position[1])), Math.min(...data.map(r => r.position[0]))],
+        [Math.max(...data.map(r => r.position[1])), Math.max(...data.map(r => r.position[0]))]
+    ];
+    map.fitBounds(bbox, {
+        padding: {top: 40, bottom:25, left: 15, right: 5}
+    });
+
+
+    data.forEach(({name, position: [long, lat]}) =>
+
+        new maplibregl.Marker()
+            .setLngLat([lat, long])
+            .setPopup(new maplibregl.Popup().setHTML(`<p>${name}</p>`))
+            .addTo(map)
+    )
+</script>
+
+</body>
+</html>
