@@ -4,7 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ '/root.css' | url}}">
+	{% if not excludeRootCss -%}
+		<link rel="stylesheet" href="{{ '/root.css' | url}}">
+	{% endif %}
 	{% if css -%}
 		{%- set cssPath %}/{{ css }}.css{% endset -%}
 	    <link rel="stylesheet" href="{{ cssPath | url}}">
