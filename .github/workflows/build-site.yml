@@ -17,7 +17,8 @@ jobs:
     - name: Setup node
       uses: actions/setup-node@v4
     - name: Build site
-      env: MAPTILER_KEY=${{ secrets.MAPTILER_KEY }}
+      env:
+        MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
       run: |
         npm install
         npm run build
