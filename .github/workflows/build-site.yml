@@ -5,32 +5,36 @@ on:
     branches: [ main ]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-        ref: gh-pages
-    - name: Merge main
-      run: |
-        git config --local user.email "bot@goblinoid.co.uk"
-        git config --local user.name "Github Actions Bot"
-        git merge origin/main
-    - name: Build Site
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup node
+      uses: actions/setup-node@v4
+    - name: Build site
+      env: MAPTILER_KEY=${{ secrets.MAPTILER_KEY }}
       run: |
         npm install
         npm run build
-    - name: Commit Docs
-      run: |
-        rm -rf docs 
-        mv _site docs
-        git add .
-        git commit -m"Commit site updates" -a || echo "No changes to commit"
-        git push
+        echo "www.jeff-horton.uk" > _site/CNAME
+    - name: Push pages artifact
+      uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        id: deployment
