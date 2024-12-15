@@ -1,4 +1,5 @@
-module.exports = {
+// noinspection JSUnusedGlobalSymbols
+export default {
     eleventyComputed: {
         breadcrumbs: ({name}) =>
                          [

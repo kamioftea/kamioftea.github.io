@@ -2,6 +2,7 @@
   "name": "kamioftea.github.io",
   "version": "1.0.0",
   "description": "Static site builder for my user github pages site",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/kamioftea/kamioftea.github.io"
@@ -17,14 +18,16 @@
   "author": "Jeff Horton <contact@jeff-horton.uk",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-plugin-inclusive-language": "^1.0.3",
-    "concurrently": "^7.0.0",
-    "feather-icons": "^4.28.0",
-    "foundation-sites": "^6.7.4",
-    "sass": "^1.49.9"
+    "concurrently": "^9.1.0",
+    "feather-icons": "^4.29.2",
+    "foundation-sites": "^6.9.0",
+    "sass": "^1.83.0"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.7",
+    "glob": "^11.0.0",
+    "remixicon": "^4.5.0"
   }
 }
