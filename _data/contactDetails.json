@@ -1,15 +1,15 @@
 [
   {
-    "provider": "Twitter",
-    "handle": "@KamiOfTea",
-    "icon": "twitter",
-    "url": "https://twitter.com/KamiOfTea"
-  },
-  {
     "provider": "GitHub",
     "handle": "kamioftea",
     "icon": "github",
     "url": "https://github.com/kamioftea/"
+  },
+  {
+    "provider": "Bluesky",
+    "handle": "@kamioftea.bsky.social",
+    "icon": "bluesky-line",
+    "url": "https://bsky.app/profile/kamioftea.bsky.social"
   },
   {
     "provider": "E-Mail",

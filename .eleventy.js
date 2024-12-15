@@ -1,12 +1,22 @@
-const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const feather = require('feather-icons');
-const inclusiveLangPlugin = require("@11ty/eleventy-plugin-inclusive-language");
-const dataSheets = require('./_data/dataSheets.json');
+import {EleventyRenderPlugin} from '@11ty/eleventy';
+import {join} from "node:path"
+import {readFile} from "node:fs/promises"
+import {readFileSync} from "node:fs"
+import feather from 'feather-icons';
+import inclusiveLangPlugin from '@11ty/eleventy-plugin-inclusive-language';
+import {config} from 'dotenv';
+import {globSync} from 'glob';
 
-require('dotenv').config()
+const dataSheets =
+    await readFile(join('.', '_data', 'dataSheets.json'), "utf8")
+    .then(file => JSON.parse(file));
+
+config()
 
 function buildDeepGetter(path) {
-    if(!path) return (obj) => obj
+    if (!path) {
+        return (obj) => obj
+    }
     const [key, ...rest] = path.split('.');
     return (obj) => buildDeepGetter(rest.join("."))(obj[key]);
 }
@@ -21,7 +31,7 @@ class Comparator {
     #toComparator(fn) {
         return (a, b) => {
             const [resA, resB] = [fn(a), fn(b)];
-            if(typeof resA === 'number' && typeof resB === 'number') {
+            if (typeof resA === 'number' && typeof resB === 'number') {
                 return resA - resB
             }
             return resA.toString().localeCompare(resB.toString())
@@ -43,7 +53,8 @@ class Comparator {
     }
 }
 
-module.exports = function(eleventyConfig) {
+// noinspection JSUnusedGlobalSymbols
+export default function (eleventyConfig) {
     eleventyConfig.addPlugin(EleventyRenderPlugin)
     eleventyConfig.addPlugin(inclusiveLangPlugin);
 
@@ -55,12 +66,19 @@ module.exports = function(eleventyConfig) {
     // So add the layout defaults here
     eleventyConfig.addGlobalData('title', 'Jeff Horton')
     eleventyConfig.addGlobalData('layout', 'layout.njk')
-    eleventyConfig.addGlobalData('maptilerKey',process.env.MAPTILER_KEY ?? '')
+    eleventyConfig.addGlobalData('maptilerKey', process.env.MAPTILER_KEY ?? '')
 
     eleventyConfig.addPassthroughCopy('assets')
     eleventyConfig.addPassthroughCopy('./favicon.png')
 
-    eleventyConfig.addNunjucksFilter('icon', (name) => feather.icons[name].toSvg())
+    eleventyConfig.addNunjucksFilter('icon', (name) => {
+        if (feather.icons[name]) {
+            return feather.icons[name].toSvg();
+        }
+
+        let [path] = globSync(`./node_modules/remixicon/icons/**/${name}.svg`);
+        return path ? `<span class='remix-icon'>${readFileSync(path, 'utf8')}</span>` : '';
+    })
     eleventyConfig.addNunjucksFilter('intersect', (collection, values, path) => {
         const lens = buildDeepGetter(path)
 
@@ -79,8 +97,8 @@ module.exports = function(eleventyConfig) {
         ))
 
     return {
-        passthroughFileCopy: true,
+        passthroughFileCopy:    true,
         markdownTemplateEngine: 'njk',
-        pathPrefix: process.env.PATH_PREFIX ?? '',
+        pathPrefix:             process.env.PATH_PREFIX ?? '',
     }
-};
+}

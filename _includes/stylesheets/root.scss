@@ -115,6 +115,16 @@ main {
   }
 }
 
+.remix-icon {
+  display: inline-block;
+  width: 24px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .summary-list {
   display: grid;
   grid-template-rows: 1fr 1fr;
