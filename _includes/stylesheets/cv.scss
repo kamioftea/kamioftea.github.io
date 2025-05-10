@@ -1,8 +1,14 @@
 @import 'util/util';
+@import "_settings";
 .cv-header {
-  grid-template-columns: 1fr max-content 12rem;
+  grid-template-columns: 12rem 1fr max-content;
   grid-gap: 1rem;
   place-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-bottom: thin $primary-color solid;
+
+  max-width: 52em;
 
   display: grid;
   justify-content: space-between;
@@ -13,11 +19,40 @@
     border-radius: 6rem;
   }
 
+  .bio {
+    text-align: center;
+    max-width: 20rem;
+  }
+
+  @include breakpoint(medium down) {
+    grid-template-columns: 8rem 1fr max-content;
+
+    .avatar {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 4rem;
+    }
+
+    .bio .lead {
+      font-size: 1rem;
+    }
+  }
+
   @include breakpoint(small down) {
     grid-template-columns: auto;
 
     .avatar {
-      order: -1;
+      width: 66vw;
+      height: 66vw;
+      border-radius: 33vw;
+    }
+
+    .bio h1 {
+      font-size: $lead-font-size * 1.5;
+    }
+
+    .bio .lead {
+      font-size: $lead-font-size;
     }
   }
 }

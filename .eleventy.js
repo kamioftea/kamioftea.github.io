@@ -64,6 +64,7 @@ class Comparator {
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(EleventyRenderPlugin)
     eleventyConfig.addPlugin(syntaxHighlight);
+    eleventyConfig.addPlugin(syntaxHighlight);
     eleventyConfig.addPlugin(inclusiveLangPlugin);
 
     eleventyConfig.ignores.add("README.md");
@@ -103,6 +104,10 @@ export default function (eleventyConfig) {
                 .thenComparing((unit) => unit.data.name)
                 .build()
         ))
+
+    eleventyConfig.addFilter('format', (date, format) => {
+        return dayjs(date).format(format)
+    })
 
     eleventyConfig.addFilter('format', (date, format) => {
         return dayjs(date).format(format)
