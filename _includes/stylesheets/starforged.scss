@@ -1,0 +1,53 @@
+@import "settings";
+
+.move {
+    border: thin $secondary-color solid;
+    border-radius: 4px;
+    padding: 0.5rem;
+    position: relative;
+    margin: 0.5rem 0;
+
+    &:before {
+        content: "Move";
+        color: $secondary-color;
+        position: absolute;
+        font-variant: small-caps;
+        top: -0rem;
+        right: 0.25rem;
+    }
+
+    h2 {
+        color: $body-font-color;
+    }
+}
+
+.truth {
+    border: thin $primary-color solid;
+    border-radius: 4px;
+    padding: 0.5rem;
+    position: relative;
+    margin: 0.5rem 0;
+
+    &:before {
+        content: "Truth";
+        color: $secondary-color;
+        position: absolute;
+        font-variant: small-caps;
+        top: -0rem;
+        right: 0.25rem;
+    }
+
+    :last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .result {
+        border-bottom: thin $primary-color solid;
+    }
+
+    .follow-up dd {
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        border-left: thick $secondary-color solid ;
+    }
+}

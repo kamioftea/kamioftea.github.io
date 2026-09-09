@@ -1,0 +1,61 @@
+---
+layout: boilerplate.njk
+---
+{% set header = header | default(title) %}
+{% set coverImage = coverImage | default(image) %}
+{% if coverImage %}
+<header class="header-image" style="background-image: url({{ coverImage }}); {{ coverImageCss }}">
+	{% if header %}
+		<div class="title-wrapper">
+		    <div class="title-container">
+                <h1>{{ header | safe}}</h1>
+                {% if date %}
+                    <time datetime="{{ date | date('yyyy-MM-dd') }}">
+                        {{ date | date('d MMM YYYY') }}
+                    </time>
+                {% endif %}
+            </div>
+		</div>
+	{% endif %}
+</header>
+{% endif %}
+
+{% if breadcrumbs %}
+    <nav aria-label="You are here:" role="navigation">
+        <ul class="breadcrumbs">
+            {% for breadcrumb in breadcrumbs %}
+                {% if loop.last %}
+                    <li>
+                      <span class="show-for-sr">Current: </span>
+                      {%- if breadcrumb.current -%}
+                        {{ title }}
+                      {%- else -%}
+                        {{ breadcrumb.label }}
+                      {%- endif -%}
+                    </li>
+                {% elif breadcrumb.url %}
+                    <li><a href="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a></li>
+                {% else %}
+                    <li class="disabled">{{ breadcrumb.label }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}
+<main class="layout-two-thirds">
+    <div>
+        {% if header and not coverImage %}
+            <h1>{{ header }}</h1>
+        {% endif %}
+        {{ content | safe }}
+        {% if tags %}
+            <hr>
+            <div class="tags">
+                Tags:
+                {% for tag in tags | reject("eq", "post") %}
+                  <a href="/tags/{{ tag | slug }}/" class="tag">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</main>

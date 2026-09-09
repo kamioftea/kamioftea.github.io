@@ -1,0 +1,50 @@
+@import "settings";
+
+.post-preview {
+    display: grid;
+    border: thin $secondary-color solid;
+    padding: 0.5rem;
+    margin-block-end: 1rem;
+
+    grid-template:
+     "img title date" auto
+     "img summary summary" 1fr
+     "img tags tags" auto
+     / 33% 1fr auto;
+
+    a:has(img) {
+        grid-area: img;
+        margin: -0.5rem 0.5rem -0.5rem -0.5rem;
+
+        img {
+            object-fit: cover;
+            object-position: center center;
+            aspect-ratio: 8/5;
+            min-height: 100%;
+        }
+    }
+
+    h2 {
+        grid-area: title;
+        margin-block-end: 0.25rem;
+    }
+
+    time {
+        grid-area: date;
+        place-self: start end;
+        margin-bottom: 0.25rem;
+    }
+
+    .summary {
+        grid-area: summary;
+    }
+
+    .tags {
+        grid-area: tags;
+    }
+}
+
+img {
+    display: block;
+    margin: auto;
+}

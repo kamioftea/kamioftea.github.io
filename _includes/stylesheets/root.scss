@@ -1,5 +1,6 @@
 @import 'settings';
-@import 'foundation';
+@import 'foundation-sites/scss/foundation';
+@import "./dice";
 
 // Global styles
 @include foundation-global-styles;
@@ -54,86 +55,113 @@
 @include foundation-prototype-classes;
 
 @each $name, $color in $foundation-palette {
-  .text-#{$name} {
-    color: $color
-  }
+    .text-#{$name} {
+        color: $color
+    }
 }
 
 html, body {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-variant: small-caps;
+    font-variant: small-caps;
 }
 
 body {
-  display: grid;
-  place-items: center;
+    display: grid;
+    place-items: center;
 }
 
-main {
-  width: min(100%, 52em);
-  padding: 1em;
+body > nav, main {
+    width: min(100%, 52rem);
+    padding: 0 0.5rem;
+}
+
+dl dd {
+    margin-bottom: 0.25rem;
+
+    &:has(+ dt) {
+        margin-bottom: 0.5rem;
+    }
 }
 
 .header-image {
-  aspect-ratio: 4 / 1;
-  background: no-repeat 50% 50%;
-  background-size: cover;
-  display: grid;
-  margin-bottom: $global-margin;
-  width: 100vw;
-
-  justify-items: stretch;
-  align-items: end;
-
-  .title-wrapper {
-    background-color: rgba($black, 70%);
-    padding: $global-padding;
+    aspect-ratio: 4 / 1;
+    background: no-repeat 50% 50%;
+    background-size: cover;
     display: grid;
-  }
+    margin-bottom: $global-margin;
+    width: 100vw;
 
-  h1 {
-    padding: 0;
-    margin: 0;
-    width: min(775px, 100%);
-    justify-self: center;
-  }
+    justify-items: stretch;
+    align-items: end;
+
+    .title-wrapper {
+        background-color: rgba($black, 85%);
+        padding: $global-padding;
+        display: grid;
+    }
+
+    .title-container {
+        padding: 0 0.5rem;
+        width: min(52rem, 100%);
+        justify-self: center;
+
+        h1 {
+            margin: 0;
+        }
+    }
 }
 
 /// Styles for contact-details.njk snippet
 .contact-detail {
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 
-  .provider {
-    display: inline-block;
-    width: 5rem;
-  }
+    .provider {
+        display: inline-block;
+        width: 5rem;
+    }
 }
 
 .remix-icon {
-  display: inline-block;
-  width: 24px;
-
-  svg {
+    display: inline-block;
     width: 24px;
-    height: 24px;
-  }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .summary-list {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
 }
 
 .two-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+@include breakpoint(medium up) {
+    .layout-two-thirds {
+        display: grid;
+        grid-template-columns: 5fr 2fr;
+        grid-gap: 0.5rem;
+    }
+}
+
+blockquote {
+    margin: 1rem 0 1rem 0.25rem;
+
+    :last-child {
+        margin-bottom: 0 !important;
+    }
 }

@@ -1,0 +1,70 @@
+.die {
+    vertical-align: middle;
+    margin: 0;
+    /* font-family: $body-font-family; */
+
+    &.medium {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    &.small {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    &.large {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+.die.action, .die.oracle {
+    & path {
+        fill: #2D5931;
+    }
+
+    & text {
+        fill: #fefefe;
+    }
+}
+
+.die.hit {
+    & path {
+        fill: #1f5f7e;
+    }
+
+    & text {
+        fill: #fefefe;
+    }
+}
+
+.die.miss {
+    & path {
+        fill: #751013;
+    }
+
+    & text {
+        fill: #fefefe;
+    }
+}
+
+.die.hitch {
+    & path {
+        fill: #0a0a0a;
+        stroke: #0d4ba0;
+        stroke-width: 2;
+    }
+
+    & text {
+        fill: #fefefe;
+    }
+}
+
+
+.dice-divider {
+    font-size: 2.5em;
+    line-height: 1;
+    vertical-align: middle;
+    margin: 0 0.5em;
+}

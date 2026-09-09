@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: kamioftea/kamioftea.github.io
+  branch: main
+  base_url: https://sveltia-cms-auth.polished-field-0ffd.workers.dev/
+
+media_folder: "assets/img"
+
+media_libraries:
+  all:
+    slugify_filename: true
+  digitalocean_spaces:
+    access_key_id: DO801TDRRD32UMHCBAFB
+    bucket: goblinoid
+    region: fra1
+    prefix: jeff-horton.uk/
+    public_url: https://static.goblinoid.co.uk
+
+collections:
+  - name: "blog"
+    label: "Posts"
+    label_singular: "Post"
+    folder: "posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", time_format: false }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        hint: "Enter tags separated by a comma"
+        required: false
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        hint: "Upload an image for this post. You can also use an image URL."
+        media_library:
+          config:
+            max_file_size: 2048000 # maximum image file size in bytes
+      - { label: "Body", name: "body", widget: "markdown" }

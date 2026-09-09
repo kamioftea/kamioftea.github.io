@@ -6,6 +6,15 @@ import feather from 'feather-icons';
 import inclusiveLangPlugin from '@11ty/eleventy-plugin-inclusive-language';
 import {config} from 'dotenv';
 import {globSync} from 'glob';
+import { load } from 'js-yaml';
+import codeFenceOverrides from './_lib/markdown-it/code-fences/index.js';
+import deflist from 'markdown-it-deflist'
+import footnote from 'markdown-it-footnote'
+
+import dayjs from 'dayjs';
+// noinspection JSFileReferences
+import advancedFormat from 'dayjs/plugin/advancedFormat.js';
+dayjs.extend(advancedFormat);
 
 const dataSheets =
     await readFile(join('.', '_data', 'dataSheets.json'), "utf8")
@@ -58,18 +67,31 @@ export default function (eleventyConfig) {
     eleventyConfig.addPlugin(EleventyRenderPlugin)
     eleventyConfig.addPlugin(inclusiveLangPlugin);
 
+    // Add support for YAML data files with .yml extension
+    eleventyConfig.addDataExtension("yml", contents => load(contents));
+
     eleventyConfig.ignores.add("README.md");
     eleventyConfig.ignores.add("/**/*.template.njk");
     eleventyConfig.ignores.add("/**/*.draft.njk");
 
-    // IntelliJ doesn't like frontmatter before <!doctype html> in root layout
+    // IntelliJ doesn't like frontmatter before `<!doctype html>` in root layout
     // So add the layout defaults here
     eleventyConfig.addGlobalData('title', 'Jeff Horton')
     eleventyConfig.addGlobalData('layout', 'layout.njk')
     eleventyConfig.addGlobalData('maptilerKey', process.env.MAPTILER_KEY ?? '')
 
+    eleventyConfig.addCollection('postsByDate', (collectionApi) =>
+        collectionApi.getFilteredByTag('post').sort((a, b) => b.date - a.date)
+    )
+
     eleventyConfig.addPassthroughCopy('assets')
     eleventyConfig.addPassthroughCopy('./favicon.png')
+
+    // Don't process folders for Sveltia CMS
+    eleventyConfig.addPassthroughCopy("assets/img"); // don't process the image folder
+    eleventyConfig.addPassthroughCopy("admin/"); // don't process the CMS folder
+
+    eleventyConfig.addFilter('date', (date, format = 'YYYY-MM-DD') => dayjs(date).format(format));
 
     eleventyConfig.addNunjucksFilter('icon', (name) => {
         if (feather.icons[name]) {
@@ -95,6 +117,12 @@ export default function (eleventyConfig) {
                 .thenComparing((unit) => unit.data.name)
                 .build()
         ))
+
+    eleventyConfig.amendLibrary("md", (mdLib) => {
+        mdLib.use(codeFenceOverrides);
+        mdLib.use(deflist);
+        mdLib.use(footnote);
+    });
 
     return {
         passthroughFileCopy:    true,

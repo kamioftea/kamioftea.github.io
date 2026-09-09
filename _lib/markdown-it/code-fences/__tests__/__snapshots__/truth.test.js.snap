@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`truth code fence override renders truth fence yaml into truth aside 1`] = `
+"<aside class="truth"><h2>Cataclysm</h2><p><strong>The Sun Plague extinguished the stars in our home galaxy.</strong></p>
+<p>The anomaly traveled at incredible speeds, many times faster than light itself, and snuffed out the stars around us
+before we realized it was coming. Few of us survived as we made our way to this new galaxy. Here in the Forge, the
+stars are still aflame. We cling to their warmth like weary travelers huddled around a fire.</p>
+</aside>"
+`;

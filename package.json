@@ -11,23 +11,31 @@
   "scripts": {
     "start": "concurrently \"npm:watch:*\"",
     "watch:11ty": "npx @11ty/eleventy --serve --port=8081",
-    "watch:scss": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site --watch",
-    "build": "npx sass -Inode_modules/foundation-sites/scss _includes/stylesheets:_site && npx @11ty/eleventy"
+    "watch:scss": "npx sass -Inode_modules _includes/stylesheets:_site --watch",
+    "build": "npx sass -Inode_modules _includes/stylesheets:_site && npx @11ty/eleventy",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "Jeff Horton <contact@jeff-horton.uk",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy": "^3.1.6",
     "@11ty/eleventy-plugin-inclusive-language": "^1.0.3",
-    "concurrently": "^9.1.0",
+    "concurrently": "^10.0.5",
     "feather-icons": "^4.29.2",
     "foundation-sites": "^6.9.0",
-    "sass": "^1.83.0"
+    "jest": "^30.5.1",
+    "sass": "^1.103.1"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "glob": "^11.0.0",
-    "remixicon": "^4.5.0"
+    "@jest/globals": "^30.5.1",
+    "dayjs": "^1.11.23",
+    "dotenv": "^17.4.2",
+    "glob": "^13.0.6",
+    "js-yaml": "^5.4.1",
+    "markdown-it": "^14.3.0",
+    "markdown-it-deflist": "^4.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "remixicon": "^4.9.1"
   }
 }
