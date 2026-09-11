@@ -24,22 +24,28 @@ export default function codeFenceOverrides(md) {
 		const handler = registry.get(language);
 
 		if (typeof handler === 'function') {
-			const overridden = handler({
-				content: token.content,
-				token,
-				tokens,
-				idx,
-				info,
-				language,
-				rendererOptions,
-				env,
-				md,
-				renderDefault: () => renderDefaultFence(tokens, idx, rendererOptions, env, self),
-			});
+            try {
+                const overridden = handler({
+                    content: token.content,
+                    token,
+                    tokens,
+                    idx,
+                    info,
+                    language,
+                    rendererOptions,
+                    env,
+                    md,
+                    renderDefault: () => renderDefaultFence(tokens, idx, rendererOptions, env, self),
+                });
 
-			if (overridden != null) {
-				return overridden;
-			}
+                if (overridden != null) {
+                    return overridden;
+                }
+            } catch (error) {
+                return `Error rendering code fence "${language}": ${error}
+                
+                <pre>${md.utils.escapeHtml(token.content)}</pre>`;
+            }
 		}
 
 		return renderDefaultFence(tokens, idx, rendererOptions, env, self);
