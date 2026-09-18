@@ -78,6 +78,18 @@ body > nav, main {
     padding: 0 0.5rem;
 }
 
+img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 dl dd {
     margin-bottom: 0.25rem;
 
@@ -153,8 +165,12 @@ dl dd {
 @include breakpoint(medium up) {
     .layout-two-thirds {
         display: grid;
-        grid-template-columns: 5fr 2fr;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 2fr);
         grid-gap: 0.5rem;
+
+        > * {
+            min-width: 0;
+        }
     }
 }
 
