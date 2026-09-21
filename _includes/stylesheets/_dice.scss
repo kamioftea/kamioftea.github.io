@@ -61,6 +61,9 @@
     }
 }
 
+.die.d100 + .die.d100 {
+    margin-left: -0.5rem;
+}
 
 .dice-divider {
     font-size: 2.5em;

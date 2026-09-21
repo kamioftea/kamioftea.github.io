@@ -1,4 +1,5 @@
 import {load} from 'js-yaml';
+import slug from '../../helpers/slug.js';
 
 export default function move({content, md}) {
 	const parsed = load(content);
@@ -6,7 +7,7 @@ export default function move({content, md}) {
 	const renderedDescription = md.render(parsed?.description ?? '');
 
 	return `\
-        <aside class="move">
+        <aside class="move" id="move-${slug(name)}">
             <h2>${md.utils.escapeHtml(name)}</h2>
             ${renderedDescription}
         </aside>`;

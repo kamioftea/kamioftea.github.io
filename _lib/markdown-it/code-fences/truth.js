@@ -1,5 +1,6 @@
 import {load} from 'js-yaml';
 import { d100Html } from '../../dice/index.js';
+import slug from '../../helpers/slug.js';
 
 function renderResult(spec) {
     if(spec.roll) {
@@ -21,8 +22,10 @@ export default function truth({content, md}) {
 
 	const renderedDescription = md.render(parsed?.description ?? '');
 
+    console.log({ parsed, renderedDescription })
+
 	return `\
-        <aside class="truth">
+        <aside class="truth" id="truth-${slug(title)}">
             <h2>${md.utils.escapeHtml(title)}</h2>
             <p class="result">
                 ${renderResult(parsed)}

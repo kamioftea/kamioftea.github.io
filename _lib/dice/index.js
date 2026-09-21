@@ -29,13 +29,14 @@ export function d100Html(
     {
         value,
         displaySize = DisplaySize.SMALL,
-        mode = Mode.ORACLE,
+        mode = value == null ? Mode.UNROLLED : Mode.ORACLE,
     }) {
-    const tens = Math.floor(value / 10);
-    const units = value % 10;
+    const tens = value != null ? Math.floor(value / 10) : null;
+    const units = value != null ? value % 10 : null;
+
     return [
-       dieHtml({sides: Dice.D10, value: tens, displaySize, mode}),
-       dieHtml({sides: Dice.D10, value: units, displaySize, mode}),
+       dieHtml({sides: Dice.D10, value: tens, displaySize, mode, extraClasses: ['d100']}),
+       dieHtml({sides: Dice.D10, value: units, displaySize, mode, extraClasses: ['d100']}),
     ].join('');
 }
 
@@ -45,6 +46,7 @@ export function d100Html(
             sides = Dice.D10,
             mode = Mode.UNROLLED,
             value = sides,
+            extraClasses = [],
         }
     ) {
         const data = getDieData(sides);
@@ -65,7 +67,7 @@ export function d100Html(
         const clipPath = data.clipPath ?? null;
 
         return `<svg
-        class="${['die', mode, displaySize].filter(cl => !!cl).join(' ')}"
+        class="${['die', mode, displaySize, ...extraClasses].filter(cl => !!cl).join(' ')}"
         viewBox="${data.viewBox}"
         role="img"
         aria-label="${label}"

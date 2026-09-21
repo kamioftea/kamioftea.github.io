@@ -8,6 +8,7 @@ import {config} from 'dotenv';
 import {globSync} from 'glob';
 import { load } from 'js-yaml';
 import codeFenceOverrides from './_lib/markdown-it/code-fences/index.js';
+import inlineDice from './_lib/markdown-it/inline-dice/index.js';
 import deflist from 'markdown-it-deflist'
 import footnote from 'markdown-it-footnote'
 
@@ -119,6 +120,7 @@ export default function (eleventyConfig) {
         ))
 
     eleventyConfig.amendLibrary("md", (mdLib) => {
+        mdLib.use(inlineDice);
         mdLib.use(codeFenceOverrides);
         mdLib.use(deflist);
         mdLib.use(footnote);

@@ -36,6 +36,8 @@
     "markdown-it": "^14.3.0",
     "markdown-it-deflist": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
-    "remixicon": "^4.9.1"
+    "remixicon": "^4.9.1",
+    "slugify": "^1.6.9",
+    "zod": "^4.6.5"
   }
 }

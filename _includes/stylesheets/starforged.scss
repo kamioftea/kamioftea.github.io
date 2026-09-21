@@ -21,6 +21,51 @@
     }
 }
 
+.asset {
+    border: thin map-get($foundation-palette, 'info')  solid;
+    border-radius: 4px;
+    padding: 0.5rem;
+    position: relative;
+    margin: 0.5rem 0;
+
+    &:before {
+        content: "Asset";
+        color: map-get($foundation-palette, 'info') ;
+        position: absolute;
+        font-variant: small-caps;
+        top: -0rem;
+        right: 0.25rem;
+    }
+
+    h3 {
+        color: $body-font-color;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    .type {
+        text-transform: uppercase;
+        font-size: smaller;
+        color: map-get($foundation-palette, 'info') ;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .abilities {
+        display: grid;
+        grid-template-columns: min-content auto;
+        grid-gap: 0.5rem;
+
+        & > svg {
+            margin-top: 0.25rem;
+
+            &.filled {
+                fill: currentColor;
+            }
+        }
+    }
+}
+
 .truth {
     border: thin $primary-color solid;
     border-radius: 4px;

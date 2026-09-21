@@ -1,9 +1,11 @@
 import move from './move.js';
 import truth from './truth.js';
+import asset from './asset.js';
 
 const registry = new Map([
+    ['asset', asset],
     ['move', move],
-	['truth', truth],
+    ['truth', truth]
 ]);
 
 export default function codeFenceOverrides(md) {

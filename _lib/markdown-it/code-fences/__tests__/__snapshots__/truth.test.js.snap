@@ -1,9 +1,61 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`truth code fence override renders truth fence yaml into truth aside 1`] = `
-"<aside class="truth"><h2>Cataclysm</h2><p><strong>The Sun Plague extinguished the stars in our home galaxy.</strong></p>
-<p>The anomaly traveled at incredible speeds, many times faster than light itself, and snuffed out the stars around us
+"        <aside class="truth" id="truth-cataclysm">
+            <h2>Cataclysm</h2>
+            <p class="result">
+                <svg
+        class="die oracle small"
+        viewBox="0 0 26 28"
+        role="img"
+        aria-label="A d10 with value 1"
+    >
+        <g>
+            <path d="M13 0L0 9.41935V18.5806L13 28L26 18.5806V9.41935L13 0Z" />
+            <text text-anchor="middle" font-size="15px" font-weight="bold" aria-hidden="true" x="12.8" y="19">1</text>
+        </g>    
+        
+    </svg><svg
+        class="die oracle small"
+        viewBox="0 0 26 28"
+        role="img"
+        aria-label="A d10 with value 7"
+    >
+        <g>
+            <path d="M13 0L0 9.41935V18.5806L13 28L26 18.5806V9.41935L13 0Z" />
+            <text text-anchor="middle" font-size="15px" font-weight="bold" aria-hidden="true" x="12.8" y="19">7</text>
+        </g>    
+        
+    </svg>: <strong>**The Sun Plague extinguished the stars in our home galaxy.**
+
+The anomaly traveled at incredible speeds, many times faster than light itself, and snuffed out the stars around us 
 before we realized it was coming. Few of us survived as we made our way to this new galaxy. Here in the Forge, the
-stars are still aflame. We cling to their warmth like weary travelers huddled around a fire.</p>
-</aside>"
+stars are still aflame. We cling to their warmth like weary travelers huddled around a fire.
+</strong>
+            </p>
+            
+            <dl class='follow-up'><dt>We suspect the Sun Plague was caused by:</dt>                 <dd><svg
+        class="die oracle small"
+        viewBox="0 0 26 28"
+        role="img"
+        aria-label="A d10 with value 6"
+    >
+        <g>
+            <path d="M13 0L0 9.41935V18.5806L13 28L26 18.5806V9.41935L13 0Z" />
+            <text text-anchor="middle" font-size="15px" font-weight="bold" aria-hidden="true" x="12.8" y="19">6</text>
+        </g>    
+        
+    </svg><svg
+        class="die oracle small"
+        viewBox="0 0 26 28"
+        role="img"
+        aria-label="A d10 with value 8"
+    >
+        <g>
+            <path d="M13 0L0 9.41935V18.5806L13 28L26 18.5806V9.41935L13 0Z" />
+            <text text-anchor="middle" font-size="15px" font-weight="bold" aria-hidden="true" x="12.8" y="19">8</text>
+        </g>    
+        
+    </svg>: <strong>undefined</strong></dd>
+        </aside>"
 `;
