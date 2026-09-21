@@ -30,7 +30,7 @@
 
     &:before {
         content: "Asset";
-        color: map-get($foundation-palette, 'info') ;
+        color: $secondary-color ;
         position: absolute;
         font-variant: small-caps;
         top: -0rem;
@@ -94,5 +94,57 @@
         margin-left: 0.5rem;
         padding-left: 0.5rem;
         border-left: thick $secondary-color solid ;
+    }
+}
+
+.vow {
+    border: thin $warning-color solid;
+    border-radius: 4px;
+    padding: 0.5rem;
+    position: relative;
+    margin: 0.5rem 0;
+
+    &:before {
+        content: "Vow";
+        color: $secondary-color;
+        position: absolute;
+        font-variant: small-caps;
+        top: -0rem;
+        right: 0.25rem;
+    }
+
+    &[data-tags]:before {
+        content: attr(data-tags);
+    }
+
+    :last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .character {
+        text-transform: uppercase;
+        font-size: smaller;
+        color: $warning-color ;
+        margin: 0;
+        line-height: 1;
+    }
+    .vow-text {
+        font-weight: bold;
+    }
+}
+
+.progress-track {
+    display: flex;
+    gap: 0.25rem;
+    margin-block-end: 0.5rem;
+
+    svg {
+        width: calc(10% - 0.225rem);
+        padding: 0.25rem;
+        border: thin $secondary-color solid;
+        border-radius: 0.125rem;
+
+        stroke: $body-font-color;
+        stroke-width: 0.5rem;
     }
 }
