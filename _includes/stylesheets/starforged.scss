@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "settings";
 
 .move {
@@ -129,7 +130,20 @@
         line-height: 1;
     }
     .vow-text {
-        font-weight: bold;
+        font-style: italic;
+        border-color: color.scale($warning-color, $lightness: -50%);
+
+        position: relative;
+
+        &:before {
+            content: "“";
+            color: rgba($secondary-color, 60%);
+            position: absolute;
+            font-size: 225%;
+            top: -0.75rem;
+            left: 0;
+            z-index: -1;
+        }
     }
 }
 
@@ -145,6 +159,6 @@
         border-radius: 0.125rem;
 
         stroke: $body-font-color;
-        stroke-width: 0.5rem;
+        stroke-width: 0.35rem;
     }
 }

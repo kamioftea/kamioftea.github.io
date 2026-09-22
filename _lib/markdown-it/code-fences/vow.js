@@ -19,7 +19,7 @@ export default function vow({content, md}) {
         return `\
 <aside class="vow" id="vow-${vow.slug}" data-tags="${[...(vow.tags ?? [vow.level]), 'vow'].join(' ')}">
     <p class="character">${vow.character}</p>
-    <p class="vow-text">${md.renderInline(vow.vow)}</p>
+    <blockquote class="vow-text">${md.renderInline(vow.vow)}</blockquote>
     ${progressHtml(vow.progress)}
 </aside>`;
 
