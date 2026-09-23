@@ -23,7 +23,7 @@
 }
 
 .asset {
-    border: thin map-get($foundation-palette, 'info')  solid;
+    border: thin map-get($foundation-palette, 'info') solid;
     border-radius: 4px;
     padding: 0.5rem;
     position: relative;
@@ -31,7 +31,7 @@
 
     &:before {
         content: "Asset";
-        color: $secondary-color ;
+        color: $secondary-color;
         position: absolute;
         font-variant: small-caps;
         top: -0rem;
@@ -47,9 +47,32 @@
     .type {
         text-transform: uppercase;
         font-size: smaller;
-        color: map-get($foundation-palette, 'info') ;
+        color: map-get($foundation-palette, 'info');
         margin: 0;
         line-height: 1;
+    }
+
+    .customisations {
+        width: 80%;
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        dt, dd {
+            border-bottom: thin $secondary-color solid;
+            margin-bottom: 0.25rem;
+            line-height: 1.6rem;
+        }
+
+        dt {
+            text-transform: uppercase;
+            font-size: smaller;
+            color: $secondary-color;
+        }
+
+        dd {
+            padding-left: 0.75rem;
+            font-style: italic;
+        }
     }
 
     .abilities {
@@ -63,6 +86,77 @@
             &.filled {
                 fill: currentColor;
             }
+        }
+    }
+
+    .hex-track-title {
+        margin: 0.5rem 0.5rem 0;
+        text-transform: uppercase;
+        font-size: small;
+        color: $secondary-color;
+    }
+
+    .hex-track {
+        margin: 0 0.5rem;
+        position: relative;
+    }
+}
+
+.hex-track {
+    display: flex;
+    gap: 0;
+
+    svg {
+        width: 2.5rem;
+
+        path {
+            fill: black;
+            stroke: $body-font-color;
+        }
+
+        text {
+            font-size: 250%;
+            font-weight: bold;
+            fill: $secondary-color;
+        }
+
+        &:not(:first-child) {
+            margin-left: -0.15rem;
+        }
+    }
+
+    .condition {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: $body-background;
+        background: $body-font-color;
+        border-radius: 0.25rem;
+        padding-right: 0.25rem;
+
+        height: 1rem;
+        text-transform: uppercase;
+        font-size: small;
+
+        &:first-of-type {
+            top: -0.25rem;
+            left: calc(((var(--hex-count)) * 2.5rem) - 1.2rem);
+        }
+
+        &:last-of-type {
+            top: 1.5rem;
+            left: calc(((var(--hex-count)) * 2.5rem) - 0.5rem);
+        }
+
+        &:first-of-type:last-of-type {
+            top: 0.9rem;
+            left: calc(((var(--hex-count)) * 2.5rem) - 0.8rem);
+        }
+
+        .condition-hex {
+            margin-left: -0.5rem;
+            width: 1.2rem;
         }
     }
 }
@@ -83,7 +177,7 @@
         right: 0.25rem;
     }
 
-    :last-child {
+    & > :last-child {
         margin-bottom: 0 !important;
     }
 
@@ -94,7 +188,7 @@
     .follow-up dd {
         margin-left: 0.5rem;
         padding-left: 0.5rem;
-        border-left: thick $secondary-color solid ;
+        border-left: thick $secondary-color solid;
     }
 }
 
@@ -118,17 +212,18 @@
         content: attr(data-tags);
     }
 
-    :last-child {
+    & > :last-child {
         margin-bottom: 0 !important;
     }
 
     .character {
         text-transform: uppercase;
         font-size: smaller;
-        color: $warning-color ;
+        color: $warning-color;
         margin: 0;
         line-height: 1;
     }
+
     .vow-text {
         font-style: italic;
         border-color: color.scale($warning-color, $lightness: -50%);
